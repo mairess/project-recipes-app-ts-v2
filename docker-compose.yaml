@@ -9,4 +9,4 @@ services:
     volumes:
       - ./src:/app/src
     ports:
-      - 3002:3002
+      - 3000:3000
