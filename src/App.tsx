@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './pages/Login';
+import Login from './pages/login/index';
 
 function App() {
   return (

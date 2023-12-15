@@ -1,12 +1,11 @@
 import styled, { keyframes } from 'styled-components';
-import logo from '../images/logo-Recipes-App.svg';
-import tomato from '../images/tomate.png';
+import tomato from '../../images/tomate.png';
 
-const Img = styled.img`
+export const Img = styled.img`
     filter: drop-shadow(0.786px 13.357px 10.214px rgba(33, 18, 55, 0.20));
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
     background-image: url(${tomato});
     background-position: 50%;
     background-repeat: no-repeat;
@@ -33,13 +32,13 @@ const Container = styled.div`
     }
 `;
 
-const LogoRecipes = styled.div`
+export const LogoRecipes = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
     background: #41197F;
 
-    height: 22.375rem;
+    height: 22.2rem;
     flex-shrink: 0;
     z-index: -1;
 
@@ -51,7 +50,7 @@ const LogoRecipes = styled.div`
     }
 `;
 
-const Inputs = styled.div`
+export const Inputs = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -72,13 +71,13 @@ const Inputs = styled.div`
     }
 `;
 
-const animateButton = keyframes`
+export const animateButton = keyframes`
     0% { transform: scale(1); }
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
     width: 17.25rem;
     height: 2.5rem;
     flex-shrink: 0;
@@ -100,35 +99,3 @@ const Button = styled.button`
         animation: ${animateButton} 300ms ease-out;
     }
 `;
-
-function Login() {
-  return (
-    <Container>
-      <LogoRecipes>
-        <Img src={ logo } alt="recipes app logo" />
-      </LogoRecipes>
-      <Inputs>
-        <h1>Login</h1>
-        <input
-          placeholder="Email"
-          type="email"
-          data-testid="email-input"
-        />
-
-        <input
-          placeholder="Password"
-          type="password"
-          data-testid="password-input"
-        />
-
-        <Button
-          data-testid="login-submit-btn"
-        >
-          Enter
-        </Button>
-      </Inputs>
-    </Container>
-  );
-}
-
-export default Login;
