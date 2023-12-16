@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../images/logo-Recipes-App.svg';
 import { Container, LogoRecipes, Img, Inputs, Button } from './style';
 
 function Login() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
   const { email, password } = form;
+
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isPasswordValid = /^[^\s]{7,}$/.test(password);
   const isFormValid = isEmailValid && isPasswordValid;
@@ -15,8 +18,15 @@ function Login() {
   };
 
   const handlePasswordChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    const newPasswprd = target.value;
-    setForm({ ...form, password: newPasswprd });
+    const newPassword = target.value;
+    setForm({ ...form, password: newPassword });
+  };
+
+  const handleSubmit = () => {
+    if (isFormValid) {
+      localStorage.setItem('user', JSON.stringify({ email }));
+      navigate('/meals');
+    }
   };
 
   return (
@@ -43,6 +53,7 @@ function Login() {
         <Button
           data-testid="login-submit-btn"
           disabled={ !isFormValid }
+          onClick={ handleSubmit }
         >
           Enter
         </Button>
