@@ -50,7 +50,7 @@ export const LogoRecipes = styled.div`
     }
 `;
 
-export const Inputs = styled.div`
+export const Inputs = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -94,6 +94,10 @@ export const Button = styled.button`
     line-height: normal;
     letter-spacing: 0.02625rem;
     text-transform: uppercase;
+
+    &:disabled {
+        background-color: grey;
+    }
 
     &:active {
         animation: ${animateButton} 300ms ease-out;
