@@ -16,13 +16,15 @@ function Header() {
         height="31"
       />
 
-      <img
-        src={ searchIcon }
-        data-testid="search-top-btn"
-        alt="S earch Icon"
-        width="31"
-        height="31"
-      />
+      {(title === 'Meals' || title === 'Drinks') && (
+        <img
+          src={ searchIcon }
+          data-testid="search-top-btn"
+          alt="S earch Icon"
+          width="31"
+          height="31"
+        />
+      )}
 
       <h1 data-testid="page-title">
         {title}
