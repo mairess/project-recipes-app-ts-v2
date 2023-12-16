@@ -1,9 +1,11 @@
 import { useLocation } from 'react-router-dom';
 import profileIcon from '../../images/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
+import usePageTitle from '../../hooks/usePageTitle';
 
 function Header() {
   const { pathname } = useLocation();
+  const { title } = usePageTitle(pathname);
   return (
     <div>
       <img
@@ -23,7 +25,7 @@ function Header() {
       />
 
       <h1 data-testid="page-title">
-        {pathname.charAt(1).toLocaleUpperCase() + pathname.slice(2)}
+        {title}
       </h1>
     </div>
   );
