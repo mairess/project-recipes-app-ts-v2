@@ -3,8 +3,8 @@ import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
 
-describe('Testing Login page', () => {
-  test('Verify if inputs are loaded and if navigate to route "/meals" ola', async () => {
+describe('Testing Login page.', () => {
+  test('Verify if inputs are loaded and if it navigates to route "/meals" when enter button is clicked.', async () => {
     const { user } = renderWithRouter(<App />, { route: '/' });
 
     const emailInput = screen.getByTestId('email-input');
