@@ -13,6 +13,7 @@ export const StyledButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1rem 0 ;
 
     border-radius: 0.3125rem;
     background: #FCC436;
@@ -45,7 +46,7 @@ export const Spinner = styled.div`
       border: 4px solid rgba(0, 0, 0, 0.1);
       border-top: 4px solid #41197F;
       border-radius: 50%;
-      width: 30px;
-      height: 30px;
+      width: 1.875rem;
+      height: 1.875rem;
       animation: ${spin} .5s linear infinite;
 `;

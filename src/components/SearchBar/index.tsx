@@ -8,7 +8,12 @@ function SearchBar() {
         type="text"
         data-testid="search-input"
       />
-      <Button />
+      <Button
+        width="13.00994rem"
+        height="1.5625rem"
+        margin="1rem"
+        showSpinner={ false }
+      />
     </Container>
   );
 }
