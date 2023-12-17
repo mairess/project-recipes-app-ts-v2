@@ -1,37 +1,16 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import useHandleSubmit from '../../hooks/useHandleSubmit';
+import useHandleChange from '../../hooks/useHandleChange';
 import logo from '../../images/logo-Recipes-App.svg';
 import { Container, LogoRecipes, Img, Inputs, Button, Spinner } from './style';
 
 function Login() {
-  const navigate = useNavigate();
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const { email, password } = form;
-
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isPasswordValid = /^[^\s]{7,}$/.test(password);
-  const isFormValid = isEmailValid && isPasswordValid;
-
-  const handleEmailChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    const newMail = target.value;
-    setForm({ ...form, email: newMail });
-  };
-
-  const handlePasswordChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    const newPassword = target.value;
-    setForm({ ...form, password: newPassword });
-  };
-
-  const handleSubmit = () => {
-    if (isFormValid) {
-      setIsButtonClicked(true);
-      localStorage.setItem('user', JSON.stringify({ email }));
-      setTimeout(() => {
-        navigate('/meals');
-      }, 1000);
-    }
-  };
+  const {
+    email,
+    isFormValid,
+    handleEmailChange,
+    handlePasswordChange,
+  } = useHandleChange();
+  const { isButtonClicked, handleSubmit } = useHandleSubmit(email, isFormValid);
 
   return (
     <Container>
