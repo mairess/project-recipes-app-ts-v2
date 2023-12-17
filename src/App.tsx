@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/header/Header';
+import Header from './components/Header';
 import { Login, Meals, Drinks, RecipeDetails, RecipeInProgress, Profile, DoneRecipes,
   FavoriteRecipes } from './index';
 

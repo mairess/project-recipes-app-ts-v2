@@ -7,7 +7,7 @@ import logoBell from '../../images/icon-Bell.svg';
 import logoText from '../../images/icon-text.svg';
 import iconPlate from '../../images/icon-plate.svg';
 import { WrapperTop, Title, WrapperTitle } from './style';
-import SearchBar from '../searchBar/SearchBar';
+import SearchBar from '../SearchBar';
 
 function Header() {
   const [showSearchBar, SetShowSearchBar] = useState(false);

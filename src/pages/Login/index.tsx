@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import usePageTitle from '../../hooks/usePageTitle';
-import useHandleSubmit from '../../hooks/useHandleSubmit';
 import useHandleChange from '../../hooks/useHandleChange';
 import logo from '../../images/logo-Recipes-App.svg';
-import { Container, LogoRecipes, Img, Inputs, Button, Spinner } from './style';
+import { Container, LogoRecipes, Img, Inputs } from './style';
+import Button from '../../components/Button';
 
 function Login() {
   const {
@@ -12,7 +12,6 @@ function Login() {
     handleEmailChange,
     handlePasswordChange,
   } = useHandleChange();
-  const { isButtonClicked, handleSubmit } = useHandleSubmit(email, isFormValid);
   const { pathname } = useLocation();
   const { title } = usePageTitle(pathname);
 
@@ -38,12 +37,9 @@ function Login() {
         />
 
         <Button
-          data-testid="login-submit-btn"
-          disabled={ !isFormValid }
-          onClick={ handleSubmit }
-        >
-          {isButtonClicked ? <Spinner /> : 'Enter'}
-        </Button>
+          email={ email }
+          isFormValid={ isFormValid }
+        />
       </Inputs>
     </Container>
   );
