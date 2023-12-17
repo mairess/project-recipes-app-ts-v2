@@ -1,18 +1,23 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import profileIcon from '../../images/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
 import usePageTitle from '../../hooks/usePageTitle';
 import logoBell from '../../images/icon-Bell.svg';
 import logoText from '../../images/icon-text.svg';
 import iconPlate from '../../images/icon-plate.svg';
-import { Container, Title, WrapperTitle } from './style';
+import { WrapperTop, Title, WrapperTitle } from './style';
+import SearchBar from '../searchBar/SearchBar';
 
 function Header() {
+  const [showSearchBar, SetShowSearchBar] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const { title } = usePageTitle(pathname);
+
   return (
-    <div>
-      <Container>
+    <header>
+      <WrapperTop>
         <div>
           <img
             src={ logoBell }
@@ -23,7 +28,9 @@ function Header() {
           <img src={ logoText } alt="Logo text" />
         </div>
         <div>
-          <Link to="/profile">
+          <button
+            onClick={ () => navigate('/profile') }
+          >
             <img
               src={ profileIcon }
               data-testid="profile-top-btn"
@@ -31,18 +38,22 @@ function Header() {
               width="28.71"
               height="28.71"
             />
-          </Link>
+          </button>
           {(title === 'Meals' || title === 'Drinks') && (
-            <img
-              src={ searchIcon }
-              data-testid="search-top-btn"
-              alt="Search Icon"
-              width="26.8"
-              height="26.8"
-            />
+            <button
+              onClick={ () => SetShowSearchBar((prevState) => !prevState) }
+            >
+              <img
+                src={ searchIcon }
+                data-testid="search-top-btn"
+                alt="Search Icon"
+                width="26.8"
+                height="26.8"
+              />
+            </button>
           )}
         </div>
-      </Container>
+      </WrapperTop>
 
       <WrapperTitle>
         <img
@@ -53,7 +64,8 @@ function Header() {
           {title}
         </Title>
       </WrapperTitle>
-    </div>
+      {showSearchBar && <SearchBar />}
+    </header>
   );
 }
 
