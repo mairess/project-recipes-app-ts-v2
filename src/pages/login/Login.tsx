@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom';
+import usePageTitle from '../../hooks/usePageTitle';
 import useHandleSubmit from '../../hooks/useHandleSubmit';
 import useHandleChange from '../../hooks/useHandleChange';
 import logo from '../../images/logo-Recipes-App.svg';
@@ -11,6 +13,8 @@ function Login() {
     handlePasswordChange,
   } = useHandleChange();
   const { isButtonClicked, handleSubmit } = useHandleSubmit(email, isFormValid);
+  const { pathname } = useLocation();
+  const { title } = usePageTitle(pathname);
 
   return (
     <Container>
@@ -18,7 +22,7 @@ function Login() {
         <Img src={ logo } alt="recipes app logo" />
       </LogoRecipes>
       <Inputs>
-        <h1>Login</h1>
+        <h1>{title}</h1>
         <input
           placeholder="Email"
           type="email"

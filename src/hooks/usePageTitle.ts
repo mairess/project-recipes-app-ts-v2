@@ -5,6 +5,9 @@ function usePageTitle(path: string) {
 
   useEffect(() => {
     switch (path) {
+      case '/':
+        setTitle('Login');
+        break;
       case '/meals':
         setTitle('Meals');
         break;
