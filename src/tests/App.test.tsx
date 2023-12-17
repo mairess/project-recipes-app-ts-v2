@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
 
@@ -18,6 +18,6 @@ describe('Testing Login page.', () => {
     await user.type(passwordInput, 'moreThanSixChar');
     await user.click(loginBtn);
 
-    expect(window.location.pathname).toBe('/meals');
+    await waitFor(() => expect(window.location.pathname).toBe('/meals'));
   });
 });

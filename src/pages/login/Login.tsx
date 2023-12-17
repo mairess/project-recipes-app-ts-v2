@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../images/logo-Recipes-App.svg';
-import { Container, LogoRecipes, Img, Inputs, Button } from './style';
+import { Container, LogoRecipes, Img, Inputs, Button, Spinner } from './style';
 
 function Login() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const { email, password } = form;
 
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -24,8 +25,11 @@ function Login() {
 
   const handleSubmit = () => {
     if (isFormValid) {
+      setIsButtonClicked(true);
       localStorage.setItem('user', JSON.stringify({ email }));
-      navigate('/meals');
+      setTimeout(() => {
+        navigate('/meals');
+      }, 1000);
     }
   };
 
@@ -55,7 +59,7 @@ function Login() {
           disabled={ !isFormValid }
           onClick={ handleSubmit }
         >
-          Enter
+          {isButtonClicked ? <Spinner /> : 'Enter'}
         </Button>
       </Inputs>
     </Container>
