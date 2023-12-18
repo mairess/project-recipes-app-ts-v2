@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
-import useHandleSubmit from '../../hooks/useHandleSubmit';
+import { useContext } from 'react';
+import FoodContext from '../../context/FoodContext';
 import { StyledButton, Spinner } from './style';
 
 type ButtonProps = {
@@ -19,7 +20,7 @@ function Button({
   margin = '0',
   showSpinner = true,
 }: ButtonProps) {
-  const { isButtonClicked, handleSubmit } = useHandleSubmit(email, isFormValid);
+  const { isButtonClicked, handleSubmit } = useContext(FoodContext);
   const { pathname } = useLocation();
   let label = 'Enter';
   let testId = 'login-submit-btn';
@@ -33,7 +34,7 @@ function Button({
     <StyledButton
       data-testid={ testId }
       disabled={ !isFormValid }
-      onClick={ handleSubmit }
+      onClick={ () => handleSubmit(email, isFormValid) }
       style={ { width, height, margin } }
     >
       {isButtonClicked && showSpinner

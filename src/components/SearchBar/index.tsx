@@ -1,4 +1,6 @@
-import useFetchMeals from '../../helpers/fetchMeals';
+import { useContext } from 'react';
+import FoodContext from '../../context/FoodContext';
+import useFetchMeals from '../../hooks/useFetchMeals';
 import useHandleChange from '../../hooks/useHandleChange';
 import {
   Container,
@@ -8,7 +10,8 @@ import {
 import Button from '../Button';
 
 function SearchBar() {
-  const { handleFilterChange, handleSearchTerm, searchTerm } = useHandleChange();
+  const { handleSearchTerm, searchTerm } = useHandleChange();
+  const { handleFilterChange } = useContext(FoodContext);
   const { endpoint } = useFetchMeals(searchTerm);
 
   return (
