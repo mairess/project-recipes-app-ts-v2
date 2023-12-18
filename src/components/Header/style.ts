@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
 export const WrapperTop = styled.div`
     display: flex;
     justify-content: space-between;
@@ -27,7 +34,7 @@ export const WrapperTitle = styled.div`
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 `;
 
 export const Title = styled.h1`

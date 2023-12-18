@@ -21,11 +21,17 @@ function Button({
 }: ButtonProps) {
   const { isButtonClicked, handleSubmit } = useHandleSubmit(email, isFormValid);
   const { pathname } = useLocation();
-  const label = pathname.includes('meals' || 'drinks') ? 'Search' : 'Enter';
+  let label = 'Enter';
+  let testId = 'login-submit-btn';
+
+  if (pathname.includes('meals') || pathname.includes('drinks')) {
+    label = 'Search';
+    testId = 'exec-search-btn';
+  }
 
   return (
     <StyledButton
-      data-testid="login-submit-btn"
+      data-testid={ testId }
       disabled={ !isFormValid }
       onClick={ handleSubmit }
       style={ { width, height, margin } }

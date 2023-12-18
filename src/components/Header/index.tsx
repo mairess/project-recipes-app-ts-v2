@@ -6,7 +6,8 @@ import usePageTitle from '../../hooks/usePageTitle';
 import logoBell from '../../images/icon-Bell.svg';
 import logoText from '../../images/icon-text.svg';
 import iconPlate from '../../images/icon-plate.svg';
-import { WrapperTop, Title, WrapperTitle } from './style';
+import iconGlass from '../../images/icon-glass.svg';
+import { Container, WrapperTop, Title, WrapperTitle } from './style';
 import SearchBar from '../SearchBar';
 
 function Header() {
@@ -16,7 +17,7 @@ function Header() {
   const { title } = usePageTitle(pathname);
 
   return (
-    <header>
+    <Container>
       <WrapperTop>
         <div>
           <img
@@ -57,7 +58,7 @@ function Header() {
 
       <WrapperTitle>
         <img
-          src={ iconPlate }
+          src={ pathname === '/meals' ? iconPlate : iconGlass }
           alt="Icon plate"
         />
         <Title data-testid="page-title">
@@ -65,7 +66,7 @@ function Header() {
         </Title>
       </WrapperTitle>
       {showSearchBar && <SearchBar />}
-    </header>
+    </Container>
   );
 }
 

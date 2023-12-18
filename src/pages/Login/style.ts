@@ -11,7 +11,7 @@ export const Container = styled.div`
         width: 17.25rem;
         height: 2.5rem;
         flex-shrink: 0;
-        text-indent: 1rem;
+        padding: 0 1rem;
         border-radius: 0.3125rem;
         border: 0.5px solid #41197F;
         color: #41197F;
@@ -23,8 +23,6 @@ export const Container = styled.div`
 
     ::placeholder {
         color: #41197F;
-        font-size: 0.875rem;
-        text-indent: 1rem;
     }
 `;
 
