@@ -5,7 +5,7 @@ import {
   API_DRINKS_BY_INGREDIENT,
   API_DRINKS_BY_NAME,
   API_DRINKS_BY_LETTER,
-} from '../endpoints';
+} from './endpoints';
 
 const getEndpoint = (term: string, pagePath: string) => {
   const MEALS_BY_INGREDIENT = `${API_MEALS_BY_INGREDIENT}${term}`;
