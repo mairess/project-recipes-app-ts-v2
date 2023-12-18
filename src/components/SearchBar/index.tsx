@@ -1,3 +1,4 @@
+import useFetchMeals from '../../helpers/fetchMeals';
 import useHandleChange from '../../hooks/useHandleChange';
 import {
   Container,
@@ -7,8 +8,8 @@ import {
 import Button from '../Button';
 
 function SearchBar() {
-  const { filter, handleFilterChange } = useHandleChange();
-  console.log(filter);
+  const { handleFilterChange, handleSearchTerm, searchTerm } = useHandleChange();
+  const { endpoint } = useFetchMeals(searchTerm);
 
   return (
     <Container>
@@ -16,12 +17,13 @@ function SearchBar() {
         type="text"
         data-testid="search-input"
         placeholder="Search"
+        onChange={ handleSearchTerm }
       />
       <WrapperRadios>
         <label htmlFor="ingredient">
           <input
             name="searchType"
-            value="ingredient"
+            value="Ingredient"
             id="ingredient"
             type="radio"
             data-testid="ingredient-search-radio"
@@ -32,7 +34,7 @@ function SearchBar() {
         <label htmlFor="name">
           <input
             name="searchType"
-            value="name"
+            value="Name"
             id="name"
             data-testid="name-search-radio"
             type="radio"
@@ -43,7 +45,7 @@ function SearchBar() {
         <label htmlFor="firstLetter">
           <input
             name="searchType"
-            value="firstLetter"
+            value="First Letter"
             id="firstLetter"
             data-testid="first-letter-search-radio"
             type="radio"
