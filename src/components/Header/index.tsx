@@ -5,8 +5,6 @@ import searchIcon from '../../images/searchIcon.svg';
 import usePageTitle from '../../hooks/usePageTitle';
 import logoBell from '../../images/icon-Bell.svg';
 import logoText from '../../images/icon-text.svg';
-import iconPlate from '../../images/icon-plate.svg';
-import iconGlass from '../../images/icon-glass.svg';
 import { Container, WrapperTop, Title, WrapperTitle } from './style';
 import SearchBar from '../SearchBar';
 
@@ -14,7 +12,8 @@ function Header() {
   const [showSearchBar, SetShowSearchBar] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const { title } = usePageTitle(pathname);
+  const { data } = usePageTitle(pathname);
+  const { title, icon } = data;
 
   return (
     <Container>
@@ -58,7 +57,7 @@ function Header() {
 
       <WrapperTitle>
         <img
-          src={ pathname === '/meals' ? iconPlate : iconGlass }
+          src={ icon }
           alt="Icon plate"
         />
         <Title data-testid="page-title">

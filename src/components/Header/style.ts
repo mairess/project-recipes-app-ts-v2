@@ -38,7 +38,6 @@ export const WrapperTitle = styled.div`
 `;
 
 export const Title = styled.h1`
-    width: 9.1875rem;
     color: #41197F;
     text-align: center;
     font-size: 1.25rem;

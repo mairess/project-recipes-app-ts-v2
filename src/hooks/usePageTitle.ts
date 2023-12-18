@@ -1,34 +1,60 @@
 import { useEffect, useState } from 'react';
 
-function usePageTitle(path: string) {
-  const [title, setTitle] = useState('');
+function usePageTitle(pagePath: string) {
+  const [data, setData] = useState({
+    title: '',
+    icon: '',
+  });
 
   useEffect(() => {
-    switch (path) {
+    switch (pagePath) {
       case '/':
-        setTitle('Login');
+        setData({
+          ...data,
+          title: 'Login',
+        });
         break;
       case '/meals':
-        setTitle('Meals');
+        setData({
+          ...data,
+          title: 'Meals',
+          icon: '/src/images/icon-plate.svg',
+        });
         break;
       case '/drinks':
-        setTitle('Drinks');
+        setData({
+          ...data,
+          title: 'Drinks',
+          icon: '/src/images/icon-glass.svg',
+        });
         break;
       case '/profile':
-        setTitle('Profile');
+        setData({
+          ...data,
+          title: 'Profile',
+          icon: '/src/images/icon-profile.svg',
+        });
         break;
       case '/done-recipes':
-        setTitle('Done Recipes');
+        setData({
+          ...data,
+          title: 'Done Recipes',
+          icon: '/src/images/icon-done-recipes.svg',
+        });
         break;
       case '/favorite-recipes':
-        setTitle('Favorite Recipes');
+        setData({
+          ...data,
+          title: 'Favorite Recipes',
+          icon: '/src/images/icon-favorite-recipes.svg',
+        });
         break;
       default:
         break;
     }
-  }, [path]);
+  }, [pagePath]);
 
-  return { title };
+  return { data };
 }
 
 export default usePageTitle;

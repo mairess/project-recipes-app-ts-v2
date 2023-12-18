@@ -13,7 +13,7 @@ function Login() {
     handlePasswordChange,
   } = useHandleChange();
   const { pathname } = useLocation();
-  const { title } = usePageTitle(pathname);
+  const { data: { title } } = usePageTitle(pathname);
 
   return (
     <Container>
