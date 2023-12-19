@@ -12,7 +12,7 @@ import Button from '../Button';
 function SearchBar() {
   const { handleSearchTerm, searchTerm } = useHandleChange();
   const { handleFilterChange } = useContext(FoodContext);
-  const { endpoint } = useFetchMeals(searchTerm);
+  const { apiData } = useFetchMeals(searchTerm);
 
   return (
     <Container>
