@@ -40,11 +40,9 @@ const useFetchMeals = (termToSearch: string) => {
       const { idMeal, idDrink } = obj;
       const id = idMeal || idDrink;
       setTheId(id);
-      console.log(pagePath);
     };
 
     if (apiData.length === 1) {
-      console.log(pagePath);
       navigate(`/${theRoute}/${theId}`);
     }
 

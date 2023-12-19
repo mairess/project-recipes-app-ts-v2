@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/Header';
+import Layout from './components/Layout';
 import { Login, Meals, Drinks, RecipeDetails, RecipeInProgress, Profile, DoneRecipes,
   FavoriteRecipes } from './index';
 
@@ -8,7 +8,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={ <Login /> } />
-      <Route element={ <Header /> }>
+      <Route element={ <Layout /> }>
         <Route path="/meals" element={ <Meals /> } />
         <Route path="/drinks" element={ <Drinks /> } />
         <Route path="/profile" element={ <Profile /> } />
