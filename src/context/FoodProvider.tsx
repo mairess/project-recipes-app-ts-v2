@@ -8,17 +8,19 @@ type FilterProviderProps = {
 
 function FoodProvider({ children }: FilterProviderProps) {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [email, setEmail] = useState('');
+  const [mail, setMail] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
   const navigate = useNavigate();
   const [filter, setFilter] = useState('');
+  const [alertShown, setAlertShown] = useState(false);
 
-  const handleSubmit = (mail: string, validation: boolean) => {
+  const handleSubmit = (email: string, validation: boolean) => {
     if (validation) {
       setIsButtonClicked(validation);
-      localStorage.setItem('user', JSON.stringify({ mail }));
+      localStorage.setItem('user', JSON.stringify({ email }));
       setTimeout(() => {
         navigate('/meals');
+        setIsButtonClicked(false);
       }, 1000);
     }
   };
@@ -31,14 +33,16 @@ function FoodProvider({ children }: FilterProviderProps) {
   return (
     <FoodContext.Provider
       value={ {
-        email,
-        setEmail,
+        mail,
+        setMail,
         isFormValid,
         setIsFormValid,
         isButtonClicked,
         handleSubmit,
         filter,
         handleFilterChange,
+        setAlertShown,
+        alertShown,
       } }
     >
       {children}

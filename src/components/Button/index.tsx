@@ -20,7 +20,7 @@ function Button({
   margin = '0',
   showSpinner = true,
 }: ButtonProps) {
-  const { isButtonClicked, handleSubmit } = useContext(FoodContext);
+  const { isButtonClicked, handleSubmit, setAlertShown } = useContext(FoodContext);
   const { pathname } = useLocation();
   let label = 'Enter';
   let testId = 'login-submit-btn';
@@ -34,7 +34,10 @@ function Button({
     <StyledButton
       data-testid={ testId }
       disabled={ !isFormValid }
-      onClick={ () => handleSubmit(email, isFormValid) }
+      onClick={ () => {
+        handleSubmit(email, isFormValid);
+        setAlertShown(false);
+      } }
       style={ { width, height, margin } }
     >
       {isButtonClicked && showSpinner
