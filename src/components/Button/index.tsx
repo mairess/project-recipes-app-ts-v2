@@ -29,13 +29,12 @@ function Button({
     label = 'Search';
     testId = 'exec-search-btn';
   }
-
   return (
     <StyledButton
       data-testid={ testId }
       disabled={ !isFormValid }
       onClick={ () => {
-        handleSubmit(email, isFormValid);
+        handleSubmit(email, isFormValid, pathname);
         setAlertShown(false);
       } }
       style={ { width, height, margin } }

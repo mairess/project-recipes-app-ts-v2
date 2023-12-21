@@ -14,12 +14,15 @@ function FoodProvider({ children }: FilterProviderProps) {
   const [filter, setFilter] = useState('');
   const [alertShown, setAlertShown] = useState(false);
 
-  const handleSubmit = (email: string, validation: boolean) => {
+  const handleSubmit = (email: string, validation: boolean, theRoute: string) => {
     if (validation) {
       setIsButtonClicked(validation);
       localStorage.setItem('user', JSON.stringify({ email }));
       setTimeout(() => {
-        navigate('/meals');
+        if (theRoute === '/') {
+          navigate('/meals');
+          setIsButtonClicked(false);
+        }
         setIsButtonClicked(false);
       }, 1000);
     }
