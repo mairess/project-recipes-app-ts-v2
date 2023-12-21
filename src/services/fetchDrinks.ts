@@ -9,8 +9,8 @@ const fetchDrinks = async (searchTerm: string, filter: string) => {
   const DRINKS_BY_NAME = `${API_DRINKS_BY_NAME}${searchTerm}`;
   const DRINKS_BY_LETTER = `${API_DRINKS_BY_LETTER}${searchTerm}`;
 
-  const DRINKS_BY_NAME_DEFAULT = `${API_DRINKS_BY_NAME}a`;
   const DRINKS_BY_INGREDIENT_DEFAULT = `${API_DRINKS_BY_INGREDIENT}vodka`;
+  const DRINKS_BY_LETTER_DEFAULT = `${API_DRINKS_BY_LETTER}a`;
 
   let endpoint;
 
@@ -22,10 +22,10 @@ const fetchDrinks = async (searchTerm: string, filter: string) => {
       endpoint = DRINKS_BY_NAME;
       break;
     case 'First Letter':
-      endpoint = searchTerm ? DRINKS_BY_LETTER : DRINKS_BY_NAME_DEFAULT;
+      endpoint = searchTerm ? DRINKS_BY_LETTER : DRINKS_BY_LETTER_DEFAULT;
       break;
     default:
-      endpoint = DRINKS_BY_INGREDIENT_DEFAULT;
+      endpoint = DRINKS_BY_NAME;
       break;
   }
 

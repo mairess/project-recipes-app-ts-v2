@@ -24,7 +24,7 @@ const fetchMeals = async (searchTerm: string, filter: string) => {
       endpoint = searchTerm ? MEALS_BY_LETTER : MEALS_BY_LETTER_DEFAULT;
       break;
     default:
-      endpoint = MEALS_BY_INGREDIENT;
+      endpoint = MEALS_BY_NAME;
       break;
   }
 
