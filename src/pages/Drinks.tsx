@@ -14,12 +14,20 @@ function Drinks() {
 
   useEffect(() => {
     const getTheDrinks = async () => {
-      const drinks = await fetchDrinks(searchTerm, filter);
-      setTheDrinks(drinks);
-      const [obj] = drinks;
-      const { idDrink } = obj;
-      if (drinks.length === 1) {
-        navigate(`/drinks/${idDrink}`);
+      try {
+        const drinks = await fetchDrinks(searchTerm, filter);
+        setTheDrinks(drinks);
+        const [obj] = drinks;
+        const { idDrink } = obj;
+        if (drinks.length === 1) {
+          navigate(`/drinks/${idDrink}`);
+        }
+      } catch (error) {
+        if (isButtonClicked) {
+          setAlertShown(true);
+          alert("Sorry, we haven't found any recipes for these filters.");
+        }
+        console.error(error);
       }
     };
     getTheDrinks();

@@ -14,12 +14,20 @@ function Meals() {
 
   useEffect(() => {
     const getTheMeals = async () => {
-      const meals = await fetchMeals(searchTerm, filter);
-      setTheMeals(meals);
-      const [obj] = meals;
-      const { idMeal } = obj;
-      if (meals.length === 1) {
-        navigate(`/meals/${idMeal}`);
+      try {
+        const meals = await fetchMeals(searchTerm, filter);
+        setTheMeals(meals);
+        const [obj] = meals;
+        const { idMeal } = obj;
+        if (meals.length === 1) {
+          navigate(`/meals/${idMeal}`);
+        }
+      } catch (error) {
+        if (isButtonClicked) {
+          setAlertShown(true);
+          alert("Sorry, we haven't found any recipes for these filters.");
+        }
+        console.error(error);
       }
     };
     getTheMeals();
