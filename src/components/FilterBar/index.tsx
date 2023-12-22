@@ -21,7 +21,7 @@ function FilterBar() {
     getTheCategories();
   }, [pathname]);
 
-  console.log(categories.map((item) => item.strCategory));
+  console.log(categories);
 
   return (
     <Container>
@@ -39,7 +39,9 @@ function FilterBar() {
       {categories && categories.map((category) => (
         <Div key={ category.strCategory }>
           <WrapperButton>
-            <Button>
+            <Button
+              data-testid={ `${category.strCategory}-category-filter` }
+            >
               <img
                 src={ getTheIcon(category.strCategory) }
                 alt="asd"
