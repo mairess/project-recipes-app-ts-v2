@@ -7,6 +7,7 @@ export const Container = styled.div`
     flex-shrink: 0;
     gap: 0.8rem;
     margin-top: 0.3125rem;
+    margin-bottom: 4rem;
 `;
 
 export const RecipeName = styled.h1`

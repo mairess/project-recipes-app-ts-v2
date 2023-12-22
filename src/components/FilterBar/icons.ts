@@ -1,0 +1,12 @@
+export { default as allMealsIcon } from '../../images/allMealsIcon.svg';
+export { default as beefIcon } from '../../images/beefIcon.svg';
+export { default as goatIcon } from '../../images/goatIcon.svg';
+export { default as chickenIcon } from '../../images/chickenIcon.svg';
+export { default as breakfastIcon } from '../../images/breakfastIcon.svg';
+export { default as dessertIcon } from '../../images/dessertIcon.svg';
+export { default as allDrinks } from '../../images/allDrinksIcon.svg';
+export { default as ordinaryDrink } from '../../images/ordinaryDrinkIcon.svg';
+export { default as cocktailIcon } from '../../images/cocktailIcon.svg';
+export { default as shakeIcon } from '../../images/shakeIcon.svg';
+export { default as unknownIcon } from '../../images/otherUnknownIcon.svg';
+export { default as cocoaIcon } from '../../images/cocoaIcon.svg';

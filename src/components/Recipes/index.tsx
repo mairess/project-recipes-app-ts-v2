@@ -7,7 +7,7 @@ import FoodContext from '../../context/FoodContext';
 import { SearchTermContext } from '../../context/SearchTermContext';
 import { Drink, Meal } from '../../types';
 
-function Card() {
+function Recipe() {
   const [recipe, setRecipe] = useState<Meal[] | Drink[]>([]);
   const { isButtonClicked, alertShown, setAlertShown } = useContext(FoodContext);
   const { searchTerm } = useContext(SearchTermContext);
@@ -80,4 +80,4 @@ function Card() {
   );
 }
 
-export default Card;
+export default Recipe;

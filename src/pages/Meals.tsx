@@ -1,8 +1,12 @@
 import Recipe from '../components/Recipes';
+import FilterBar from '../components/FilterBar';
 
 function Meals() {
   return (
-    <Recipe />
+    <>
+      <FilterBar />
+      <Recipe />
+    </>
   );
 }
 
