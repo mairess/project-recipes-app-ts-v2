@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FoodContext from './FoodContext';
+import { DrinkCategoryType, MealCategoryType } from '../types';
 
 type FilterProviderProps = {
   children: React.ReactNode,
@@ -13,6 +14,8 @@ function FoodProvider({ children }: FilterProviderProps) {
   const navigate = useNavigate();
   const [filter, setFilter] = useState('');
   const [alertShown, setAlertShown] = useState(false);
+  const [categoryResults, setCategoryResults] = useState<
+  MealCategoryType[] | DrinkCategoryType[]>([]);
 
   const handleSubmit = (email: string, validation: boolean, theRoute: string) => {
     if (validation) {
@@ -46,6 +49,8 @@ function FoodProvider({ children }: FilterProviderProps) {
         handleFilterChange,
         setAlertShown,
         alertShown,
+        categoryResults,
+        setCategoryResults,
       } }
     >
       {children}

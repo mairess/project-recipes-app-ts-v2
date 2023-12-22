@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import { CategoryType, DrinkCategoryType, MealCategoryType } from '../types';
 
 type ContextType = {
   mail: string;
@@ -11,6 +12,8 @@ type ContextType = {
   handleFilterChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   setAlertShown: (value: boolean) => void;
   alertShown: boolean;
+  categoryResults: CategoryType[];
+  setCategoryResults: (value: MealCategoryType[] | DrinkCategoryType[]) => void;
 };
 
 const FoodContext = createContext({} as ContextType);
