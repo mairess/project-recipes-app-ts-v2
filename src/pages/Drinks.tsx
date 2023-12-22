@@ -1,4 +1,4 @@
-import Recipe from '../components/Card';
+import Recipe from '../components/Recipes';
 
 function Drinks() {
   return (
