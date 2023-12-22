@@ -1,23 +1,27 @@
 import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import fetchCategories from '../../services/fetchCategories';
 import { Container, WrapperButton, Button, Div } from './style';
-import {
-  allMealsIcon,
-  beefIcon,
-  goatIcon,
-  chickenIcon,
-  breakfastIcon,
-  dessertIcon,
-  allDrinks,
-  ordinaryDrink,
-  cocktailIcon,
-  shakeIcon,
-  unknownIcon,
-  cocoaIcon,
-} from './icons';
+import getTheIcon from './icons';
 
-function MealsFilterBar() {
+function FilterBar() {
+  const [categories, setCategories] = useState([]);
   const { pathname } = useLocation();
   const routeValidation = pathname === '/meals';
+
+  useEffect(() => {
+    const getTheCategories = async () => {
+      try {
+        const theCategories = await fetchCategories(pathname);
+        setCategories(theCategories);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getTheCategories();
+  }, [pathname]);
+
+  console.log(categories.map((item) => item.strCategory));
 
   return (
     <Container>
@@ -25,14 +29,27 @@ function MealsFilterBar() {
         <WrapperButton>
           <Button>
             <img
-              src={ routeValidation ? allMealsIcon : allDrinks }
+              src={ routeValidation ? getTheIcon('iconMeal') : getTheIcon('iconDrink') }
               alt={ routeValidation ? 'All meals' : 'All drinks' }
             />
           </Button>
         </WrapperButton>
         <p>All</p>
       </Div>
-      <Div>
+      {categories && categories.map((category) => (
+        <Div key={ category.strCategory }>
+          <WrapperButton>
+            <Button>
+              <img
+                src={ getTheIcon(category.strCategory) }
+                alt="asd"
+              />
+            </Button>
+          </WrapperButton>
+          <p>{category.strCategory}</p>
+        </Div>
+      ))}
+      {/* <Div>
         <WrapperButton>
           <Button>
             <img
@@ -86,9 +103,9 @@ function MealsFilterBar() {
           </Button>
         </WrapperButton>
         <p>Dessert</p>
-      </Div>
+      </Div> */}
     </Container>
   );
 }
 
-export default MealsFilterBar;
+export default FilterBar;
