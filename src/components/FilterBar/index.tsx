@@ -43,68 +43,13 @@ function FilterBar() {
             >
               <img
                 src={ getTheIcon(category.strCategory) }
-                alt="asd"
+                alt={ category.strCategory }
               />
             </Button>
           </WrapperButton>
           <p>{category.strCategory}</p>
         </Div>
       ))}
-      {/* <Div>
-        <WrapperButton>
-          <Button>
-            <img
-              src={ routeValidation ? beefIcon : ordinaryDrink }
-              alt={ routeValidation ? 'Beef' : 'Ordinary Drink' }
-            />
-          </Button>
-        </WrapperButton>
-        <p>Beef</p>
-      </Div>
-      <Div>
-        <WrapperButton>
-          <Button>
-            <img
-              src={ routeValidation ? goatIcon : cocktailIcon }
-              alt={ routeValidation ? 'Goat' : 'Cocktail' }
-            />
-          </Button>
-        </WrapperButton>
-        <p>Goat</p>
-      </Div>
-      <Div>
-        <WrapperButton>
-          <Button>
-            <img
-              src={ routeValidation ? chickenIcon : shakeIcon }
-              alt={ routeValidation ? 'Chicken' : 'Shake' }
-            />
-          </Button>
-        </WrapperButton>
-        <p>Chicken</p>
-      </Div>
-      <Div>
-        <WrapperButton>
-          <Button>
-            <img
-              src={ routeValidation ? breakfastIcon : unknownIcon }
-              alt={ routeValidation ? 'Breakfast' : 'Other / Unknown' }
-            />
-          </Button>
-        </WrapperButton>
-        <p>Breakfast</p>
-      </Div>
-      <Div>
-        <WrapperButton>
-          <Button>
-            <img
-              src={ routeValidation ? dessertIcon : cocoaIcon }
-              alt={ routeValidation ? 'Dessert' : 'Cocoa' }
-            />
-          </Button>
-        </WrapperButton>
-        <p>Dessert</p>
-      </Div> */}
     </Container>
   );
 }
