@@ -9,6 +9,9 @@ const fetchCategories = async (route: string) => {
     const response = await fetch(url);
     const data = await response.json();
     const { meals, drinks } = data;
+    console.log(meals);
+    console.log(drinks);
+
     return routeValidation ? meals.slice(0, 5) : drinks.slice(0, 5);
   } catch (error) {
     console.error(error);

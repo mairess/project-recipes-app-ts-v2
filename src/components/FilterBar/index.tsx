@@ -1,11 +1,12 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { CategoryType } from '../../types';
 import fetchCategories from '../../services/fetchCategories';
 import { Container, WrapperButton, Button, Div } from './style';
 import getTheIcon from './icons';
 
 function FilterBar() {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
   const { pathname } = useLocation();
   const routeValidation = pathname === '/meals';
 
@@ -20,8 +21,6 @@ function FilterBar() {
     };
     getTheCategories();
   }, [pathname]);
-
-  console.log(categories);
 
   return (
     <Container>

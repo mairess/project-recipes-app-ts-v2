@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Drink } from '../types';
+import { DrinkType } from '../types';
 import {
   API_DRINKS_BY_INGREDIENT,
   API_DRINKS_BY_NAME,
@@ -7,7 +7,7 @@ import {
 } from '../helpers/endpoints';
 
 const useFetchTheDrinks = async (searchTerm: string, filter: string) => {
-  const [theDrinks, setTheDrinks] = useState<Drink[]>([]);
+  const [theDrinks, setTheDrinks] = useState<DrinkType[]>([]);
   const DRINKS_BY_INGREDIENT = `${API_DRINKS_BY_INGREDIENT}${searchTerm}`;
   const DRINKS_BY_NAME = `${API_DRINKS_BY_NAME}${searchTerm}`;
   const DRINKS_BY_LETTER = `${API_DRINKS_BY_LETTER}${searchTerm}`;

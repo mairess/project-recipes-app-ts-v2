@@ -5,10 +5,10 @@ import fetchMeals from '../../services/fetchMeals';
 import fetchDrinks from '../../services/fetchDrinks';
 import FoodContext from '../../context/FoodContext';
 import { SearchTermContext } from '../../context/SearchTermContext';
-import { Drink, Meal } from '../../types';
+import { DrinkType, MealType } from '../../types';
 
 function Recipe() {
-  const [recipe, setRecipe] = useState<Meal[] | Drink[]>([]);
+  const [recipe, setRecipe] = useState<MealType[] | DrinkType[]>([]);
   const { isButtonClicked, alertShown, setAlertShown } = useContext(FoodContext);
   const { searchTerm } = useContext(SearchTermContext);
   const { filter } = useContext(FoodContext);
@@ -51,28 +51,28 @@ function Recipe() {
 
   return (
     <Container>
-      {recipe && recipe.slice(0, 12).map((item: Meal | Drink, index: number) => (
+      {recipe && recipe.slice(0, 12).map((item: MealType | DrinkType, index: number) => (
         <Wrapper
           data-testid={ `${index}-recipe-card` }
           key={ routeValidation
-            ? (item as Meal).idMeal
-            : (item as Drink).idDrink }
+            ? (item as MealType).idMeal
+            : (item as DrinkType).idDrink }
         >
           <Image
             data-testid={ `${index}-card-img` }
             src={ routeValidation
-              ? (item as Meal).strMealThumb
-              : (item as Drink).strDrinkThumb }
+              ? (item as MealType).strMealThumb
+              : (item as DrinkType).strDrinkThumb }
             alt={ routeValidation
-              ? (item as Meal).strMeal
-              : (item as Drink).strDrink }
+              ? (item as MealType).strMeal
+              : (item as DrinkType).strDrink }
           />
           <RecipeName
             data-testid={ `${index}-card-name` }
           >
             {routeValidation
-              ? (item as Meal).strMeal
-              : (item as Drink).strDrink}
+              ? (item as MealType).strMeal
+              : (item as DrinkType).strDrink}
           </RecipeName>
         </Wrapper>
       ))}

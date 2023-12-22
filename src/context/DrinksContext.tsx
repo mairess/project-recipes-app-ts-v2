@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { Drink } from '../types';
+import { DrinkType } from '../types';
 
 type ContextType = {
-  drinks: Drink[];
-  setDrinks: (value: Drink[]) => void;
+  drinks: DrinkType[];
+  setDrinks: (value: DrinkType[]) => void;
 };
 
 const DrinksContext = createContext({} as ContextType);

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import fetchDrinks from '../services/fetchDrinks';
-import { Drink } from '../types';
+import { DrinkType } from '../types';
 import DrinksContext from './DrinksContext';
 import FoodContext from './FoodContext';
 import { SearchTermContext } from './SearchTermContext';
@@ -10,7 +10,7 @@ type FilterProviderProps = {
 };
 
 function DrinksProvider({ children }: FilterProviderProps) {
-  const [drinks, setDrinks] = useState<Drink[]>([]);
+  const [drinks, setDrinks] = useState<DrinkType[]>([]);
   const { filter, isButtonClicked } = useContext(FoodContext);
   const { searchTerm } = useContext(SearchTermContext);
 

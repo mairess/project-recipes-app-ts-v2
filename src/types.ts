@@ -1,4 +1,4 @@
-export type Meal = {
+export type MealType = {
   idMeal: string;
   strMeal: string;
   strDrinkAlternate: string | null;
@@ -54,7 +54,7 @@ export type Meal = {
   dateModified: string | null;
 };
 
-export type Drink = {
+export type DrinkType = {
   idDrink: string;
   strDrink: string;
   strDrinkAlternate: string | null;
@@ -106,4 +106,8 @@ export type Drink = {
   strImageAttribution: string | null;
   strCreativeCommonsConfirmed: boolean;
   dateModified: string;
+};
+
+export type CategoryType = {
+  strCategory: string;
 };

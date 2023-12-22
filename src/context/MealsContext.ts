@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { Meal } from '../types';
+import { MealType } from '../types';
 
 type ContextType = {
-  meals: Meal[];
-  setMeals: (value: Meal[]) => void;
+  meals: MealType[];
+  setMeals: (value: MealType[]) => void;
 };
 
 const MealsContext = createContext({} as ContextType);
