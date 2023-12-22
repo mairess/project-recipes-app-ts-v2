@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import fetchMeals from '../services/fetchMeals';
-import fetchDrinks from '../services/fetchDrinks';
-import FoodContext from '../context/FoodContext';
-import { SearchTermContext } from '../context/SearchTermContext';
-import { Drink, Meal } from '../types';
+import { Container, Image, RecipeName, Wrapper } from './style';
+import fetchMeals from '../../services/fetchMeals';
+import fetchDrinks from '../../services/fetchDrinks';
+import FoodContext from '../../context/FoodContext';
+import { SearchTermContext } from '../../context/SearchTermContext';
+import { Drink, Meal } from '../../types';
 
-function Recipe() {
+function Card() {
   const [recipe, setRecipe] = useState<Meal[] | Drink[]>([]);
   const { isButtonClicked, alertShown, setAlertShown } = useContext(FoodContext);
   const { searchTerm } = useContext(SearchTermContext);
@@ -49,24 +50,16 @@ function Recipe() {
   }, [isButtonClicked]);
 
   return (
-    <div>
+    <Container>
       {recipe && recipe.slice(0, 12).map((item: Meal | Drink, index: number) => (
-        <div
+        <Wrapper
           data-testid={ `${index}-recipe-card` }
           key={ routeValidation
             ? (item as Meal).idMeal
             : (item as Drink).idDrink }
         >
-          <h1
-            data-testid={ `${index}-card-name` }
-          >
-            {routeValidation
-              ? (item as Meal).strMeal
-              : (item as Drink).strDrink}
-          </h1>
-          <img
+          <Image
             data-testid={ `${index}-card-img` }
-            style={ { width: '163.34608px', height: '134.85408px' } }
             src={ routeValidation
               ? (item as Meal).strMealThumb
               : (item as Drink).strDrinkThumb }
@@ -74,10 +67,17 @@ function Recipe() {
               ? (item as Meal).strMeal
               : (item as Drink).strDrink }
           />
-        </div>
+          <RecipeName
+            data-testid={ `${index}-card-name` }
+          >
+            {routeValidation
+              ? (item as Meal).strMeal
+              : (item as Drink).strDrink}
+          </RecipeName>
+        </Wrapper>
       ))}
-    </div>
+    </Container>
   );
 }
 
-export default Recipe;
+export default Card;
