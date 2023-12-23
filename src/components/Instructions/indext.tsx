@@ -1,5 +1,4 @@
 import { DrinkType, MealType } from '../../types';
-import getInstructions from '../../helpers/getInstructions';
 import { Title, Wrapper } from './style';
 
 type InstructionsProps = {
@@ -8,7 +7,10 @@ type InstructionsProps = {
 
 function Instructions({ recipe }: InstructionsProps) {
   const [data] = recipe;
-  const instructions = data ? getInstructions(data) : [];
+  if (!data) {
+    return null;
+  }
+  const { strInstructions } = data;
   return (
     <>
       <Title>Instructions</Title>
@@ -16,7 +18,7 @@ function Instructions({ recipe }: InstructionsProps) {
         <p
           data-testid="instructions"
         >
-          {instructions}
+          {strInstructions}
         </p>
       </Wrapper>
     </>

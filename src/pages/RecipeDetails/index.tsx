@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import VideoYouTube from '../../components/VideoYouTube';
 import Instructions from '../../components/Instructions/indext';
 import IngredientList from '../../components/IngredientList';
 import Title from '../../components/Title/Title';
@@ -12,6 +13,7 @@ function RecipeDetails() {
   MealType[] | DrinkType[]>([]);
   const { id = '' } = useParams();
   const { pathname } = useLocation();
+  const validation = pathname.includes('/meals');
 
   useEffect(() => {
     const getDetails = async () => {
@@ -27,6 +29,7 @@ function RecipeDetails() {
       <Wrapper>
         <IngredientList recipe={ recipesDetails } />
         <Instructions recipe={ recipesDetails } />
+        {validation && <VideoYouTube recipe={ recipesDetails } />}
       </Wrapper>
     </>
   );
