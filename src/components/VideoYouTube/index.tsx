@@ -29,8 +29,11 @@ function VideoYouTube({ recipe }: VideoYouTubeProps) {
   return (
     <>
       <Title>Video</Title>
-      <div>
-        <YouTube videoId={ VideoId } opts={ opts } />
+      <div data-testid="video">
+        <YouTube
+          videoId={ VideoId }
+          opts={ opts }
+        />
       </div>
     </>
   );
