@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import Instructions from '../../components/Instructions/indext';
 import IngredientList from '../../components/IngredientList';
 import Title from '../../components/Title/Title';
 import { DrinkType, MealType } from '../../types';
@@ -25,6 +26,7 @@ function RecipeDetails() {
       <Title recipe={ recipesDetails } />
       <Wrapper>
         <IngredientList recipe={ recipesDetails } />
+        <Instructions recipe={ recipesDetails } />
       </Wrapper>
     </>
   );

@@ -1,4 +1,4 @@
-function getIngredientsAndMeasures(recipe: any) {
+const getIngredientsAndMeasures = (recipe: any) => {
   const rawData = [];
   let i = 1;
   while (recipe[`strIngredient${i}`] && recipe[`strMeasure${i}`]) {
@@ -9,6 +9,6 @@ function getIngredientsAndMeasures(recipe: any) {
   }
   const ingredients = rawData.map((item) => `${item.ingredient} - ${item.measure}`);
   return ingredients;
-}
+};
 
 export default getIngredientsAndMeasures;
