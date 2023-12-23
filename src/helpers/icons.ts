@@ -1,15 +1,15 @@
-import allMealsIcon from '../../images/allMealsIcon.svg';
-import beefIcon from '../../images/beefIcon.svg';
-import goatIcon from '../../images/goatIcon.svg';
-import chickenIcon from '../../images/chickenIcon.svg';
-import breakfastIcon from '../../images/breakfastIcon.svg';
-import dessertIcon from '../../images/dessertIcon.svg';
-import allDrinks from '../../images/allDrinksIcon.svg';
-import ordinaryDrink from '../../images/ordinaryDrinkIcon.svg';
-import cocktailIcon from '../../images/cocktailIcon.svg';
-import shakeIcon from '../../images/shakeIcon.svg';
-import unknownIcon from '../../images/otherUnknownIcon.svg';
-import cocoaIcon from '../../images/cocoaIcon.svg';
+import allMealsIcon from '../images/allMealsIcon.svg';
+import beefIcon from '../images/beefIcon.svg';
+import goatIcon from '../images/goatIcon.svg';
+import chickenIcon from '../images/chickenIcon.svg';
+import breakfastIcon from '../images/breakfastIcon.svg';
+import dessertIcon from '../images/dessertIcon.svg';
+import allDrinks from '../images/allDrinksIcon.svg';
+import ordinaryDrink from '../images/ordinaryDrinkIcon.svg';
+import cocktailIcon from '../images/cocktailIcon.svg';
+import shakeIcon from '../images/shakeIcon.svg';
+import unknownIcon from '../images/otherUnknownIcon.svg';
+import cocoaIcon from '../images/cocoaIcon.svg';
 
 function getTheIcon(category:string) {
   let icon;
@@ -52,7 +52,7 @@ function getTheIcon(category:string) {
       icon = allDrinks;
       break;
     default:
-      icon = allDrinks;
+      icon = dessertIcon;
       break;
   }
 

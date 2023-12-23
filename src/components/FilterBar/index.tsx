@@ -5,7 +5,7 @@ import fetchCategory from '../../services/fetchCategory';
 import { CategoriesType } from '../../types';
 import fetchCategories from '../../services/fetchCategories';
 import { Container, WrapperButton, Button, Div } from './style';
-import getTheIcon from './icons';
+import getTheIcon from '../../helpers/icons';
 
 function FilterBar() {
   const [categories, setCategories] = useState<CategoriesType[]>([]);

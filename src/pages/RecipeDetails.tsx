@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import Title from '../components/Title/Title';
 import { DrinkDetailsType, MealDetailsType } from '../types';
 import fetchDetails from '../services/fetchDetails';
 
@@ -18,15 +19,7 @@ function RecipeDetails() {
   }, [id, pathname]);
 
   return (
-    <div>
-      {recipesDetails.map((item: MealDetailsType | DrinkDetailsType) => (
-        <div
-          key={ (item as MealDetailsType).idMeal || (item as DrinkDetailsType).idDrink }
-        >
-          {(item as MealDetailsType).strMeal || (item as DrinkDetailsType).strDrink}
-        </div>
-      ))}
-    </div>
+    <Title theDetails={ recipesDetails } />
   );
 }
 
