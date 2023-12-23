@@ -7,7 +7,7 @@ import FoodContext from '../../context/FoodContext';
 import { SearchTermContext } from '../../context/SearchTermContext';
 import { DrinkCategoryType, DrinkType, MealCategoryType, MealType } from '../../types';
 
-function FilterCategory() {
+function FilteredCategories() {
   const [recipe, setRecipe] = useState<MealType[] | DrinkType[]>([]);
   const {
     isButtonClicked,
@@ -98,4 +98,4 @@ function FilterCategory() {
   );
 }
 
-export default FilterCategory;
+export default FilteredCategories;

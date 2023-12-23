@@ -1,4 +1,4 @@
-import FilterCategory from '../FilterCategory';
+import FilterCategory from '../FilteredCategories';
 
 function Recipe() {
   return (
