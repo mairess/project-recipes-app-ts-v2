@@ -7,16 +7,10 @@ import FoodContext from '../../context/FoodContext';
 import { SearchTermContext } from '../../context/SearchTermContext';
 import { DrinkCategoryType, DrinkType, MealCategoryType, MealType } from '../../types';
 
-function FilteredCategories() {
+function Cards() {
   const [recipe, setRecipe] = useState<MealType[] | DrinkType[]>([]);
-  const {
-    isButtonClicked,
-    alertShown,
-    setAlertShown,
-    filter,
-    categoryResults,
-    setCategoryResults,
-  } = useContext(FoodContext);
+  const { isButtonClicked, alertShown, setAlertShown, filter, categoryResults,
+    setCategoryResults } = useContext(FoodContext);
   const { searchTerm } = useContext(SearchTermContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -98,4 +92,4 @@ function FilteredCategories() {
   );
 }
 
-export default FilteredCategories;
+export default Cards;
