@@ -3,32 +3,38 @@ import allMealsIcon from '../../images/allMealsIcon.svg';
 import allDrinksIcon from '../../images/allDrinksIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
-import { DrinkDetailsType, MealDetailsType } from '../../types';
+import { DrinkType, MealType } from '../../types';
 import { Container, RecipeTitle, TopHeader, BottomHeader,
-  WrapperIcon, WrapperTag, FavAndShare } from './style';
+  WrapperIcon, WrapperTag, FavAndShare, ImageBg } from './style';
 
 type TitleProps = {
-  theDetails: MealDetailsType[] | DrinkDetailsType[];
+  recipe: MealType[] | DrinkType[];
 };
 
-function Title({ theDetails }: TitleProps) {
-  console.log(theDetails);
+function Title({ recipe }: TitleProps) {
   const { pathname } = useLocation();
   const validation = pathname.includes('/meals');
 
   return (
-    theDetails && theDetails.map((item: MealDetailsType | DrinkDetailsType) => (
+    recipe && recipe.map((item: MealType | DrinkType) => (
       <Container
         style={ {
           backgroundImage: `url(${
-            (item as MealDetailsType).strMealThumb
-          || (item as DrinkDetailsType).strDrinkThumb
+            (item as MealType).strMealThumb
+          || (item as DrinkType).strDrinkThumb
           })`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         } }
-        key={ (item as MealDetailsType).idMeal || (item as DrinkDetailsType).idDrink }
+        key={ (item as MealType).idMeal || (item as DrinkType).idDrink }
       >
+        <ImageBg // review here, I put css property display none just to put a test id.
+          data-testid="recipe-photo"
+          src={ (item as MealType).strMealThumb
+              || (item as DrinkType).strDrinkThumb }
+          alt={ (item as MealType).strMeal
+            || (item as DrinkType).strDrink }
+        />
         <TopHeader>
           <WrapperTag>
             <WrapperIcon>
@@ -37,10 +43,12 @@ function Title({ theDetails }: TitleProps) {
                 alt={ validation ? 'Meals Icon' : 'Drinks Icon' }
               />
             </WrapperIcon>
-            <p>
+            <p
+              data-testid="recipe-category"
+            >
               { validation
-                ? `${(item as MealDetailsType).strCategory}`
-                : `${(item as DrinkDetailsType).strAlcoholic}` }
+                ? `${(item as MealType).strCategory}`
+                : `${(item as DrinkType).strAlcoholic}` }
             </p>
           </WrapperTag>
           <FavAndShare>
@@ -55,9 +63,11 @@ function Title({ theDetails }: TitleProps) {
           </FavAndShare>
         </TopHeader>
         <BottomHeader>
-          <RecipeTitle>
-            { (item as MealDetailsType).strMeal
-            || (item as DrinkDetailsType).strDrink }
+          <RecipeTitle
+            data-testid="recipe-title"
+          >
+            { (item as MealType).strMeal
+            || (item as DrinkType).strDrink }
           </RecipeTitle>
         </BottomHeader>
       </Container>
