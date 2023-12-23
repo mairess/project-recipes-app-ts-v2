@@ -9,7 +9,8 @@ import getTheIcon from './icons';
 
 function FilterBar() {
   const [categories, setCategories] = useState<CategoriesType[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [filterCategoryClicked, setFilterCategoryClicked] = useState(true);
   const { setCategoryResults } = useContext(FoodContext);
   const { pathname } = useLocation();
   const routeValidation = pathname === '/meals';
@@ -27,7 +28,12 @@ function FilterBar() {
   }, [pathname]);
 
   const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category);
+    setFilterCategoryClicked((prevState) => !prevState);
+    setSelectedCategory(filterCategoryClicked ? category : 'All');
+
+    if (!filterCategoryClicked) {
+      setCategoryResults([]);
+    }
   };
 
   useEffect(() => {
