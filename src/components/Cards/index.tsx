@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Container, Image, RecipeName, Wrapper } from './style';
 import fetchMeals from '../../services/fetchMeals';
 import fetchDrinks from '../../services/fetchDrinks';
@@ -66,27 +66,33 @@ function Cards() {
           | DrinkCategoryType,
           index: number,
         ) => (
-          <Wrapper
-            data-testid={ `${index}-recipe-card` }
+          <Link
+            to={ `${pathname}/${routeValidation
+              ? (item as MealType).idMeal
+              : (item as DrinkType).idDrink}` }
             key={ (item as MealType).idMeal || (item as DrinkType).idDrink }
           >
-            <Image
-              data-testid={ `${index}-card-img` }
-              src={ routeValidation
-                ? (item as MealType).strMealThumb
-                : (item as DrinkType).strDrinkThumb }
-              alt={ routeValidation
-                ? (item as MealType).strMeal
-                : (item as DrinkType).strDrink }
-            />
-            <RecipeName
-              data-testid={ `${index}-card-name` }
+            <Wrapper
+              data-testid={ `${index}-recipe-card` }
             >
-              {routeValidation
-                ? (item as MealType).strMeal
-                : (item as DrinkType).strDrink}
-            </RecipeName>
-          </Wrapper>
+              <Image
+                data-testid={ `${index}-card-img` }
+                src={ routeValidation
+                  ? (item as MealType).strMealThumb
+                  : (item as DrinkType).strDrinkThumb }
+                alt={ routeValidation
+                  ? (item as MealType).strMeal
+                  : (item as DrinkType).strDrink }
+              />
+              <RecipeName
+                data-testid={ `${index}-card-name` }
+              >
+                {routeValidation
+                  ? (item as MealType).strMeal
+                  : (item as DrinkType).strDrink}
+              </RecipeName>
+            </Wrapper>
+          </Link>
         ))}
     </Container>
   );

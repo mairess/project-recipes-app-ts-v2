@@ -8,6 +8,10 @@ export const Container = styled.div`
     gap: 0.8rem;
     margin-top: 0.3125rem;
     margin-bottom: 4rem;
+
+    a {
+        text-decoration: none;
+    }
 `;
 
 export const RecipeName = styled.h1`
