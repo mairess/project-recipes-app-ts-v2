@@ -15,6 +15,7 @@ function FilterCategory() {
     setAlertShown,
     filter,
     categoryResults,
+    setCategoryResults,
   } = useContext(FoodContext);
   const { searchTerm } = useContext(SearchTermContext);
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ function FilterCategory() {
       }
     };
     getTheRecipes();
-  }, [isButtonClicked]);
+  }, [isButtonClicked, pathname]);
 
   useEffect(() => {
     if (filter === 'First Letter' && searchTerm.length > 1 && !alertShown) {
@@ -53,6 +54,10 @@ function FilterCategory() {
       alert('Your search must have only 1 (one) character');
     }
   }, [isButtonClicked]);
+
+  useEffect(() => {
+    setCategoryResults([]);
+  }, [pathname]);
 
   const content = categoryResults && categoryResults.length ? categoryResults : recipe;
 
@@ -69,9 +74,7 @@ function FilterCategory() {
         ) => (
           <Wrapper
             data-testid={ `${index}-recipe-card` }
-            key={ routeValidation
-              ? (item as MealType).idMeal
-              : (item as DrinkType).idDrink }
+            key={ (item as MealType).idMeal || (item as DrinkType).idDrink }
           >
             <Image
               data-testid={ `${index}-card-img` }
