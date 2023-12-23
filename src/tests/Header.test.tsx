@@ -1,10 +1,17 @@
 import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
+import FoodProvider from '../context/FoodProvider';
 
 describe('Testing Header component.', () => {
   test('Verify if inputs are loaded and if it navigates to route "/profile" when profile button is clicked.', async () => {
-    const { user } = renderWithRouter(<App />, { route: '/meals' });
+    const { user } = renderWithRouter(
+      <FoodProvider>
+        <App />
+        ,
+      </FoodProvider>,
+      { route: '/meals' },
+    );
 
     const profileIconBtn = screen.getByTestId('profile-top-btn');
     const searchIconBtn = screen.getByTestId('search-top-btn');
