@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import IngredientList from '../../components/Ingredient';
+import IngredientList from '../../components/IngredientList';
 import Title from '../../components/Title/Title';
-import { DrinkDetailsType, MealDetailsType } from '../../types';
+import { DrinkType, MealType } from '../../types';
 import fetchDetails from '../../services/fetchDetails';
 import { Wrapper } from './style';
 
 function RecipeDetails() {
   const [recipesDetails, setRecipesDetails] = useState<
-  MealDetailsType[] | DrinkDetailsType[]>([]);
+  MealType[] | DrinkType[]>([]);
   const { id = '' } = useParams();
   const { pathname } = useLocation();
 

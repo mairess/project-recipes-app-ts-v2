@@ -1,37 +1,34 @@
 // import { useLocation } from 'react-router-dom';
+import getIngredientsAndMeasures from '../../helpers/getIngredientsAndMeasures';
 import { DrinkType, MealType } from '../../types';
-import { Title } from './style';
+import { Title, Container } from './style';
 
 type IngredientListProps = {
   recipe: MealType[] | DrinkType[];
 };
 
 function IngredientList({ recipe }: IngredientListProps) {
-//   const { pathname } = useLocation();
-//   const validation = pathname.includes('/meals');
-  console.log(recipe);
+  const [data] = recipe;
+  const ingredients = data ? getIngredientsAndMeasures(data) : [];
 
   return (
-    <>
+    <Container>
       {recipe && recipe.map((item: MealType | DrinkType) => (
         <div
           key={ (item as MealType).idMeal || (item as DrinkType).idDrink }
         >
-          <h1>
-            {(item as MealType).strMeal || (item as DrinkType).strDrink }
-          </h1>
+          <Title>
+            Ingredients
+          </Title>
         </div>
       ))}
-      <Title>Ingredients</Title>
       <ul>
-        <li>Ingredient 1</li>
-        <li>Ingredient 2</li>
-        <li>Ingredient 3</li>
-        <li>Ingredient 4</li>
-        <li>Ingredient 5</li>
+        {ingredients && ingredients.map((ingredient) => (
+          <li key={ ingredient }>{ingredient}</li>
+        ))}
       </ul>
 
-    </>
+    </Container>
   );
 }
 
