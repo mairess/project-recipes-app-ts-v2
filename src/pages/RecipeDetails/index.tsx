@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import Recommended from '../../components/Carousel';
+import Recommended from '../../components/Recommended';
 import fetchCategory from '../../services/fetchCategory';
 import VideoYouTube from '../../components/VideoYouTube';
 import Instructions from '../../components/Instructions/indext';
