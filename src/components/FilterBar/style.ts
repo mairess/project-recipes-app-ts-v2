@@ -6,6 +6,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: .6rem;
+    margin-top: 0.35rem;
 
     p {
         color: #797D86;

@@ -11,7 +11,6 @@ export const Title = styled.h1`
 
 export const Wrapper = styled.div`
     width: 20.9375rem;
-    min-height: 25.875rem;
     flex-shrink: 0;
     padding: 1rem 0.5rem;
 

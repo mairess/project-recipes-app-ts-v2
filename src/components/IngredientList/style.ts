@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
     width: 20.9375rem;
-    min-height: 8.3125rem;
     flex-shrink: 0;
     border-radius: 0.33444rem;
     border: 0.554px solid #B1B1B1;

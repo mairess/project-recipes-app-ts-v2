@@ -1,8 +1,8 @@
-import FilterCategory from '../Cards';
+import Cards from '../Cards';
 
 function Recipe() {
   return (
-    <FilterCategory />
+    <Cards />
   );
 }
 
