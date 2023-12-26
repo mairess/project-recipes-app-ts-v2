@@ -1,8 +1,6 @@
 import { useLocation } from 'react-router-dom';
-// import useFavorite from '../../hooks/useFavorite';
 import { useEffect, useState } from 'react';
 import useFavorite from '../../hooks/useFavorite';
-// import favoriteTheRecipe, { isFavorite } from '../../helpers/favoriteTheRecipe';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import ordinaryDrinkIcon from '../../images/ordinaryDrinkIcon.svg';
 import dessertIcon from '../../images/dessertIcon.svg';
@@ -28,8 +26,6 @@ function Title({ recipe }: TitleProps) {
   const { isLinkCopied, handCopyToleClipboard } = useCopyToClipBoard();
   const { pathname } = useLocation();
   const validation = pathname.includes('/meals');
-
-  console.log(favoriteList);
 
   return (
     recipe && recipe.map((item: MealType | DrinkType) => (

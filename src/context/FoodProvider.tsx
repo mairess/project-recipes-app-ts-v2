@@ -41,8 +41,6 @@ function FoodProvider({ children }: FilterProviderProps) {
         }
 
         if (label === 'Start Recipe') {
-          console.log(label === 'Start Recipe');
-
           if (pathname.includes('/meals')) {
             navigate(`/meals/${id}/in-progress`);
           }
