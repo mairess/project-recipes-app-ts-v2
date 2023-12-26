@@ -1,5 +1,5 @@
 import { MealType, DrinkType } from '../../types';
-import { Container, Img, Title, WrapperImage } from './style';
+import { Container, Img, Title, WrapperImage, Wrapper } from './style';
 
 type CarouselProps = {
   recommended: MealType[] | DrinkType[];
@@ -8,9 +8,9 @@ type CarouselProps = {
 function Recommended({ recommended }:CarouselProps) {
   const theRecommended = recommended.slice(0, 6);
   return (
-    <>
+    <Container>
       <Title>Recommended</Title>
-      <Container>
+      <Wrapper>
         {theRecommended.map((item, index) => (
           <WrapperImage
             data-testid={ `${index}-recommendation-card` }
@@ -27,8 +27,8 @@ function Recommended({ recommended }:CarouselProps) {
             </p>
           </WrapperImage>
         ))}
-      </Container>
-    </>
+      </Wrapper>
+    </Container>
   );
 }
 

@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    margin-bottom: 2rem;
+`;
+
+export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     width: 21.02056rem;

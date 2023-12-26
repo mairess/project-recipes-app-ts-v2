@@ -125,3 +125,24 @@ export type DrinkCategoryType = {
 };
 
 export type CategoryType = MealCategoryType | DrinkCategoryType;
+
+export type DoneRecipesType = {
+  id: string,
+  type: string,
+  nationality: string,
+  category: string,
+  alcoholicOrNot: string,
+  name: string;
+  image: string;
+  doneDate: string,
+  tags: string[];
+};
+
+export type InProgressRecipesType = {
+  drinks: {
+    [id: string]: string[],
+  },
+  meals: {
+    [id: string]: string[],
+  }
+};

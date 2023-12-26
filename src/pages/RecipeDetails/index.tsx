@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import isRecipeDone from '../../helpers/isRecipeDone';
+import Button from '../../components/Button';
 import Recommended from '../../components/Recommended';
 import fetchCategory from '../../services/fetchCategory';
 import VideoYouTube from '../../components/VideoYouTube';
-import Instructions from '../../components/Instructions/indext';
+import Instructions from '../../components/Instructions/index';
 import IngredientList from '../../components/IngredientList';
 import Title from '../../components/Title/Title';
 import { DrinkType, MealType } from '../../types';
@@ -43,6 +45,7 @@ function RecipeDetails() {
         <Instructions recipe={ recipesDetails } />
         {validation && <VideoYouTube recipe={ recipesDetails } />}
         <Recommended recommended={ recommended } />
+        {!isRecipeDone(id) && <Button />}
       </Wrapper>
     </>
   );

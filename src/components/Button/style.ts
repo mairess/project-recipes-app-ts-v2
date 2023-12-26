@@ -6,6 +6,12 @@ const SmartAnimate = keyframes`
     100% { transform: scale(1); }
 `;
 
+export const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 export const StyledButton = styled.button`
     width: 17.25rem;
     height: 2.5rem;
