@@ -12,8 +12,6 @@ function IngredientListWorks({ recipe }: IngredientListProps) {
   const ingredients = data ? getIngredientsAndMeasures(data) : [];
   const [checkedIngredients, setCheckedIngredients] = useState<string[]>([]);
 
-  console.log(checkedIngredients);
-
   const handleCheckboxChange = (ingredient: string) => {
     if (checkedIngredients.includes(ingredient)) {
       setCheckedIngredients((prevChecked) => prevChecked
@@ -34,6 +32,11 @@ function IngredientListWorks({ recipe }: IngredientListProps) {
             <label
               key={ ingredient }
               data-testid={ `${index}-ingredient-step` }
+              style={ {
+                textDecoration: checkedIngredients.includes(ingredient)
+                  ? 'line-through solid rgb(0, 0, 0)'
+                  : 'none',
+              } }
             >
               <input
                 type="checkbox"
