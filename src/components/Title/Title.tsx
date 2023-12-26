@@ -53,10 +53,12 @@ function Title({ recipe }: TitleProps) {
           </WrapperTag>
           <FavAndShare>
             <img
+              data-testid="share-btn"
               src={ shareIcon }
               alt="Share icon"
             />
             <img
+              data-testid="favorite-btn"
               src={ blackHeartIcon }
               alt="Favorite icon"
             />

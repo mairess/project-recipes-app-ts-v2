@@ -4,8 +4,6 @@ import isRecipeInProgress from '../../helpers/isRecipeInProgress';
 import FoodContext from '../../context/FoodContext';
 import { StyledButton, Spinner, Container } from './style';
 
-type Position = 'fixed';
-
 type ButtonProps = {
   email?: string,
   validation?: boolean,
@@ -13,7 +11,7 @@ type ButtonProps = {
   height?: string,
   margin?: string,
   showSpinner?: boolean,
-  position?: Position,
+  position?: 'fixed',
   bottom?: string,
 };
 
