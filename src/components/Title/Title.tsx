@@ -1,19 +1,30 @@
 import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import allMealsIcon from '../../images/allMealsIcon.svg';
 import allDrinksIcon from '../../images/allDrinksIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
 import { DrinkType, MealType } from '../../types';
 import { Container, RecipeTitle, TopHeader, BottomHeader,
-  WrapperIcon, WrapperTag, FavAndShare, ImageBg } from './style';
+  WrapperIcon, WrapperTag, FavAndShare, ImageBg, LinkCopied } from './style';
 
 type TitleProps = {
   recipe: MealType[] | DrinkType[];
 };
 
 function Title({ recipe }: TitleProps) {
+  const [isLinkCopied, setIsLinkCopied] = useState(false);
   const { pathname } = useLocation();
   const validation = pathname.includes('/meals');
+
+  const handleClipBoard = () => {
+    setIsLinkCopied(true);
+    navigator.clipboard.writeText(window.location.href);
+
+    setTimeout(() => {
+      setIsLinkCopied(false);
+    }, 2000);
+  };
 
   return (
     recipe && recipe.map((item: MealType | DrinkType) => (
@@ -52,16 +63,27 @@ function Title({ recipe }: TitleProps) {
             </p>
           </WrapperTag>
           <FavAndShare>
-            <img
-              data-testid="share-btn"
-              src={ shareIcon }
-              alt="Share icon"
-            />
-            <img
-              data-testid="favorite-btn"
-              src={ blackHeartIcon }
-              alt="Favorite icon"
-            />
+            {isLinkCopied && (
+              <LinkCopied>
+                Link copied!
+              </LinkCopied>
+            )}
+            <button
+              onClick={ handleClipBoard }
+            >
+              <img
+                data-testid="share-btn"
+                src={ shareIcon }
+                alt="Share icon"
+              />
+            </button>
+            <button>
+              <img
+                data-testid="favorite-btn"
+                src={ blackHeartIcon }
+                alt="Favorite icon"
+              />
+            </button>
           </FavAndShare>
         </TopHeader>
         <BottomHeader>

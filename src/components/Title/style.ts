@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import circleIcon from '../../images/circle.svg';
 
 export const Container = styled.header`
@@ -78,8 +78,30 @@ export const WrapperTag = styled.div`
     }
 `;
 
+const SmartAnimate = keyframes`
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+`;
+
 export const FavAndShare = styled.div`
     display: flex;
     gap: 0.5rem;
+    filter: drop-shadow(0px 0px 2.915px rgba(0, 0, 0, 1));
+
+    button {
+        border: none;
+        background: none;
+
+        &:active {
+        animation: ${SmartAnimate} 300ms ease-out;
+    }
+    }
+`;
+
+export const LinkCopied = styled.div`
+    display: flex;
+    align-items: center;
+    justify-self: center;
     filter: drop-shadow(0px 0px 2.915px rgba(0, 0, 0, 1));
 `;
