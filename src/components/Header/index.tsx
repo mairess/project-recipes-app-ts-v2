@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState /* useEffect */ } from 'react';
 import profileIcon from '../../images/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
 import usePageTitle from '../../hooks/usePageTitle';
@@ -15,11 +15,11 @@ function Header() {
   const { data } = usePageTitle(pathname);
   const { title, icon } = data;
 
-  useEffect(() => {
-    if (!(pathname === '/meals' || pathname === '/drinks')) {
-      setShowSearchBar((prevState) => !prevState);
-    }
-  }, [pathname]);
+  // useEffect(() => {
+  //   if (!(pathname === '/meals' || pathname === '/drinks')) {
+  //     setShowSearchBar((prevState) => !prevState);
+  //   }
+  // }, [pathname]);
 
   return (
     <Container>
