@@ -7,7 +7,15 @@ type ContextType = {
   isFormValid: boolean;
   setIsFormValid: (value: boolean) => void;
   isButtonClicked: boolean;
-  handleSubmit: (mail: string, validation: boolean, theRoute: string) => void;
+  handleSubmit: (
+    data: {
+      email: string;
+      validation: boolean;
+      pathname: string;
+      label: string;
+      id: string;
+    }
+  ) => void;
   filter: string;
   handleFilterChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   setAlertShown: (value: boolean) => void;

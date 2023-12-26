@@ -8,7 +8,7 @@ type Position = 'fixed';
 
 type ButtonProps = {
   email?: string,
-  isFormValid?: boolean,
+  validation?: boolean,
   width?: string,
   height?: string,
   margin?: string,
@@ -19,7 +19,7 @@ type ButtonProps = {
 
 function Button({
   email = '',
-  isFormValid = true,
+  validation = true,
   width = '17.25rem',
   height = '2.5rem',
   margin = '0',
@@ -32,8 +32,6 @@ function Button({
   const { id = '' } = useParams();
   let label = 'Enter';
   let testId = 'login-submit-btn';
-
-  console.log(pathname);
 
   if (pathname.includes('meals') || pathname.includes('drinks')) {
     label = 'Search';
@@ -55,9 +53,9 @@ function Button({
     <Container>
       <StyledButton
         data-testid={ testId }
-        disabled={ !isFormValid }
+        disabled={ !validation }
         onClick={ () => {
-          handleSubmit(email, isFormValid, pathname);
+          handleSubmit({ email, validation, pathname, label, id });
           setAlertShown(false);
         } }
         style={ { width, height, margin, position, bottom } }

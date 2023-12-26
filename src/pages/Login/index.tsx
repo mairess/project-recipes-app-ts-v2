@@ -38,7 +38,7 @@ function Login() {
 
         <Button
           email={ email }
-          isFormValid={ isFormValid }
+          validation={ isFormValid }
         />
       </Inputs>
     </Container>

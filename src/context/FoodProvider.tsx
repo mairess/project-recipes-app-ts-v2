@@ -17,14 +17,38 @@ function FoodProvider({ children }: FilterProviderProps) {
   const [categoryResults, setCategoryResults] = useState<
   MealCategoryType[] | DrinkCategoryType[]>([]);
 
-  const handleSubmit = (email: string, validation: boolean, theRoute: string) => {
+  const handleSubmit = ({
+    email,
+    validation,
+    pathname,
+    label,
+    id,
+  }: {
+    email: string;
+    validation: boolean;
+    pathname: string;
+    label: string;
+    id: string;
+  }) => {
     if (validation) {
       setIsButtonClicked(validation);
       localStorage.setItem('user', JSON.stringify({ email }));
+
       setTimeout(() => {
-        if (theRoute === '/') {
+        if (pathname === '/') {
           navigate('/meals');
           setIsButtonClicked(false);
+        }
+
+        if (label === 'Start Recipe') {
+          console.log(label === 'Start Recipe');
+
+          if (pathname.includes('/meals')) {
+            navigate(`/meals/${id}/in-progress`);
+          }
+          if (pathname.includes('/drinks')) {
+            navigate(`/drinks/${id}/in-progress`);
+          }
         }
         setIsButtonClicked(false);
       }, 1000);
