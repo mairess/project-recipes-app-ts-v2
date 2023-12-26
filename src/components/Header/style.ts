@@ -1,10 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+`;
+
+const SmartAnimate = keyframes`
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 `;
 
 export const WrapperTop = styled.div`
@@ -25,6 +31,10 @@ export const WrapperTop = styled.div`
     button {
         background: none;
         border: none;
+        
+        &:active {
+        animation: ${SmartAnimate} 300ms ease-out;
+    }
     }
 `;
 

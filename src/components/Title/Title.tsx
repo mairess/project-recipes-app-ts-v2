@@ -1,10 +1,15 @@
 import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
-import allMealsIcon from '../../images/allMealsIcon.svg';
-import allDrinksIcon from '../../images/allDrinksIcon.svg';
+// import useFavorite from '../../hooks/useFavorite';
+import { useEffect, useState } from 'react';
+import useFavorite from '../../hooks/useFavorite';
+// import favoriteTheRecipe, { isFavorite } from '../../helpers/favoriteTheRecipe';
+import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
+import ordinaryDrinkIcon from '../../images/ordinaryDrinkIcon.svg';
+import dessertIcon from '../../images/dessertIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
-import { DrinkType, MealType } from '../../types';
+import { DrinkType, FavoriteType, MealType } from '../../types';
 import { Container, RecipeTitle, TopHeader, BottomHeader,
   WrapperIcon, WrapperTag, FavAndShare, ImageBg, LinkCopied } from './style';
 
@@ -13,18 +18,18 @@ type TitleProps = {
 };
 
 function Title({ recipe }: TitleProps) {
-  const [isLinkCopied, setIsLinkCopied] = useState(false);
+  const { favoriteTheRecipe, setFavoriteList, favoriteList } = useFavorite();
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem('favoriteRecipes');
+    const theFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+    setFavoriteList(theFavorites);
+  }, [setFavoriteList]);
+
+  const { isLinkCopied, handCopyToleClipboard } = useCopyToClipBoard();
   const { pathname } = useLocation();
   const validation = pathname.includes('/meals');
 
-  const handleClipBoard = () => {
-    setIsLinkCopied(true);
-    navigator.clipboard.writeText(window.location.href);
-
-    setTimeout(() => {
-      setIsLinkCopied(false);
-    }, 2000);
-  };
+  console.log(favoriteList);
 
   return (
     recipe && recipe.map((item: MealType | DrinkType) => (
@@ -50,7 +55,7 @@ function Title({ recipe }: TitleProps) {
           <WrapperTag>
             <WrapperIcon>
               <img
-                src={ validation ? allMealsIcon : allDrinksIcon }
+                src={ validation ? dessertIcon : ordinaryDrinkIcon }
                 alt={ validation ? 'Meals Icon' : 'Drinks Icon' }
               />
             </WrapperIcon>
@@ -69,7 +74,7 @@ function Title({ recipe }: TitleProps) {
               </LinkCopied>
             )}
             <button
-              onClick={ handleClipBoard }
+              onClick={ handCopyToleClipboard }
             >
               <img
                 data-testid="share-btn"
@@ -77,10 +82,20 @@ function Title({ recipe }: TitleProps) {
                 alt="Share icon"
               />
             </button>
-            <button>
+            <button
+              onClick={ () => favoriteTheRecipe(
+                item,
+                validation ? (item as MealType).idMeal : (item as DrinkType).idDrink,
+                pathname,
+              ) }
+            >
               <img
                 data-testid="favorite-btn"
-                src={ blackHeartIcon }
+                src={ favoriteList.some((fav: FavoriteType) => (
+                  fav.id === (validation
+                    ? (item as MealType).idMeal
+                    : (item as DrinkType).idDrink)
+                )) ? blackHeartIcon : whiteHeartIcon }
                 alt="Favorite icon"
               />
             </button>
