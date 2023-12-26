@@ -19,7 +19,14 @@ function RecipeDetails() {
   const { id = '' } = useParams();
   const { pathname } = useLocation();
   const validation = pathname.includes('/meals');
-  const fetchCategoryParam = validation ? '/drinks' : '/meals';
+
+  let fetchCategoryParam: string;
+
+  if (validation) {
+    fetchCategoryParam = '/drinks';
+  } else {
+    fetchCategoryParam = '/meals';
+  }
 
   useEffect(() => {
     const getDetails = async () => {
