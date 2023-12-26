@@ -6,15 +6,20 @@ export const Wrapper = styled.div`
     border-radius: 0.33444rem;
     border: 0.554px solid #B1B1B1;
     background: #FFF;
-    padding: 1rem 0;
+    padding: 1rem 0 1rem 1rem;
 
-    li {
+    display: flex;
+    flex-direction: column;
+
     color: #1A1B1C;
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
     line-height: 1.25rem;
-}
+
+    input {
+        margin-right: 0.4rem;
+    }
 `;
 
 export const Title = styled.h1`

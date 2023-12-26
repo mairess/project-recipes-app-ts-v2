@@ -1,4 +1,3 @@
-// import { useLocation } from 'react-router-dom';
 import getIngredientsAndMeasures from '../../helpers/getIngredientsAndMeasures';
 import { DrinkType, MealType } from '../../types';
 import { Title, Wrapper } from './style';

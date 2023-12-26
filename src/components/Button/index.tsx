@@ -47,6 +47,11 @@ function Button({
     label = 'Continue Recipe';
   }
 
+  if (pathname.includes('in-progress')) {
+    label = 'Finish Recipe';
+    testId = 'finish-recipe-btn';
+  }
+
   return (
     <Container>
       <StyledButton
