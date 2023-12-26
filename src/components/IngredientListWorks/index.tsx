@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import getIngredientsAndMeasures from '../../helpers/getIngredientsAndMeasures';
 import { DrinkType, MealType } from '../../types';
 import { Title, Wrapper } from './style';
@@ -11,6 +12,33 @@ function IngredientListWorks({ recipe }: IngredientListProps) {
   const [data] = recipe;
   const ingredients = data ? getIngredientsAndMeasures(data) : [];
   const [checkedIngredients, setCheckedIngredients] = useState<string[]>([]);
+  const { id = '' } = useParams();
+  const { pathname } = useLocation();
+  const validation = pathname.includes('/meals');
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('inProgressRecipes');
+    const parsedData = storedData ? JSON.parse(storedData) : { drinks: {}, meals: {} };
+
+    if (validation) {
+      setCheckedIngredients(parsedData.meals[id] || []);
+    } else {
+      setCheckedIngredients(parsedData.drinks[id] || []);
+    }
+  }, [id, validation]);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('inProgressRecipes');
+    const parsedData = storedData ? JSON.parse(storedData) : { drinks: {}, meals: {} };
+
+    if (validation) {
+      parsedData.meals[id] = checkedIngredients;
+    } else {
+      parsedData.drinks[id] = checkedIngredients;
+    }
+
+    localStorage.setItem('inProgressRecipes', JSON.stringify(parsedData));
+  }, [checkedIngredients, id, validation]);
 
   const handleCheckboxChange = (ingredient: string) => {
     if (checkedIngredients.includes(ingredient)) {
