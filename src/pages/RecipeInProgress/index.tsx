@@ -1,9 +1,9 @@
 import DetailsOrProgress from '../../components/DetailsOrProgress';
 
-function RecipeDetails() {
+function RecipeInProgress() {
   return (
     <DetailsOrProgress />
   );
 }
 
-export default RecipeDetails;
+export default RecipeInProgress;

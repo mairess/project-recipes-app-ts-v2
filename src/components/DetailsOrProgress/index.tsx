@@ -1,23 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import IngredientListWorks from '../../components/IngredientListWorks';
-import Instructions from '../../components/Instructions';
-import Recommended from '../../components/Recommended';
-import Button from '../../components/Button';
-import fetchCategory from '../../services/fetchCategory';
-import fetchDetails from '../../services/fetchDetails';
-import { MealType, DrinkType } from '../../types';
-import Title from '../../components/Title/Title';
-import { Wrapper } from './style';
+import IngredientList from '../IngredientList';
 import isRecipeDone from '../../helpers/isRecipeDone';
+import Button from '../Button';
+import Recommended from '../Recommended';
+import fetchCategory from '../../services/fetchCategory';
+import VideoYouTube from '../VideoYouTube';
+import Instructions from '../Instructions';
+import IngredientListWorks from '../IngredientListWorks';
+import Title from '../Title';
+import { MealType, DrinkType } from '../../types';
+import fetchDetails from '../../services/fetchDetails';
+import { Wrapper } from './style';
 
-function RecipeInProgress() {
+function DetailsOrProgress() {
   const [recipesDetails, setRecipesDetails] = useState<
   MealType[] | DrinkType[]>([]);
   const [recommended, setRecommended] = useState<MealType[] | DrinkType[]>([]);
   const { id = '' } = useParams();
   const { pathname } = useLocation();
   const validation = pathname.includes('/meals');
+  const isPageInProgress = pathname.includes('/in-progress');
 
   let fetchCategoryParam: string;
 
@@ -42,12 +45,16 @@ function RecipeInProgress() {
     };
     fetchRecommended();
   }, [fetchCategoryParam]);
+
   return (
     <>
       <Title recipe={ recipesDetails } />
       <Wrapper>
-        <IngredientListWorks recipe={ recipesDetails } />
+        {isPageInProgress
+          ? <IngredientListWorks recipe={ recipesDetails } />
+          : <IngredientList recipe={ recipesDetails } />}
         <Instructions recipe={ recipesDetails } />
+        {validation && <VideoYouTube recipe={ recipesDetails } />}
         <Recommended recommended={ recommended } />
         {!isRecipeDone(id) && <Button />}
       </Wrapper>
@@ -55,4 +62,4 @@ function RecipeInProgress() {
   );
 }
 
-export default RecipeInProgress;
+export default DetailsOrProgress;
