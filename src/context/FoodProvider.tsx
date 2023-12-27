@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { string } from 'prop-types';
 import FoodContext from './FoodContext';
 import { DrinkCategoryType, MealCategoryType } from '../types';
 
@@ -17,6 +18,11 @@ function FoodProvider({ children }: FilterProviderProps) {
   const [categoryResults, setCategoryResults] = useState<
   MealCategoryType[] | DrinkCategoryType[]>([]);
   const [checkedIngredients, setCheckedIngredients] = useState<string[]>([]);
+
+  const handleNavigation = (path: string) => {
+    setIsButtonClicked(false);
+    navigate(path);
+  };
 
   const handleSubmit = ({
     email,
@@ -37,17 +43,12 @@ function FoodProvider({ children }: FilterProviderProps) {
 
       setTimeout(() => {
         if (pathname === '/') {
-          navigate('/meals');
-          setIsButtonClicked(false);
-        }
-
-        if (label === 'Start Recipe') {
-          if (pathname.includes('/meals')) {
-            navigate(`/meals/${id}/in-progress`);
-          }
-          if (pathname.includes('/drinks')) {
-            navigate(`/drinks/${id}/in-progress`);
-          }
+          handleNavigation('/meals');
+        } else if (pathname.includes('in-progress')) {
+          handleNavigation('/done-recipes');
+        } else if (label === 'Start Recipe') {
+          const recipePath = pathname.includes('/meals') ? '/meals' : '/drinks';
+          handleNavigation(`${recipePath}/${id}/in-progress`);
         }
         setIsButtonClicked(false);
       }, 1000);
