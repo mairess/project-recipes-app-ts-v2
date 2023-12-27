@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { string } from 'prop-types';
 import FoodContext from './FoodContext';
 import { DrinkCategoryType, MealCategoryType } from '../types';
 
@@ -37,14 +36,14 @@ function FoodProvider({ children }: FilterProviderProps) {
     label: string;
     id: string;
   }) => {
+    if (pathname === '/') {
+      localStorage.setItem('user', JSON.stringify({ email }));
+    }
     if (validation) {
       setIsButtonClicked(validation);
-      localStorage.setItem('user', JSON.stringify({ email }));
 
       setTimeout(() => {
-        if (pathname === '/') {
-          handleNavigation('/meals');
-        } else if (pathname.includes('in-progress')) {
+        if (pathname.includes('in-progress')) {
           handleNavigation('/done-recipes');
         } else if (label === 'Start Recipe') {
           const recipePath = pathname.includes('/meals') ? '/meals' : '/drinks';

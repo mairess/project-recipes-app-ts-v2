@@ -15,9 +15,6 @@ const formDoneRecipe = (recipe: MealType[] | DrinkType[], pagePath: string) => {
   const [data] = recipe;
   const validation = pagePath.includes('meals');
 
-  const tags = data.strTags;
-  console.log(tags);
-
   return {
     id: validation ? (data as MealType).idMeal : (data as DrinkType).idDrink,
     nationality: validation ? (data as MealType).strArea : '',

@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import isRecipeInProgress from '../../helpers/isRecipeInProgress';
 import FoodContext from '../../context/FoodContext';
@@ -30,8 +30,16 @@ function Button({
   const { isButtonClicked, handleSubmit, setAlertShown } = useContext(FoodContext);
   const { pathname } = useLocation();
   const { id = '' } = useParams();
+  const navigate = useNavigate();
   let label = 'Enter';
   let testId = 'login-submit-btn';
+
+  const handleSaveMail = (thePath: string) => {
+    if (thePath === '/') {
+      navigate('/meals');
+      localStorage.setItem('user', JSON.stringify({ email }));
+    }
+  };
 
   if (pathname.includes('meals') || pathname.includes('drinks')) {
     label = 'Search';
@@ -49,11 +57,6 @@ function Button({
     label = 'Continue Recipe';
   }
 
-  if (pathname.includes('in-progress')) {
-    label = 'Finish Recipe';
-    testId = 'finish-recipe-btn';
-  }
-
   return (
     <Container>
       <StyledButton
@@ -62,6 +65,7 @@ function Button({
           ? validationToIngredients
           : !validation }
         onClick={ () => {
+          handleSaveMail(pathname);
           handleSubmit({ email, validation, pathname, label, id });
           setAlertShown(false);
         } }

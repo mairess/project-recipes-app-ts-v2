@@ -52,8 +52,6 @@ function DetailsOrProgress() {
     fetchRecommended();
   }, [fetchCategoryParam]);
 
-  console.log(pathname.includes('in-progress'));
-
   return (
     <>
       <Title recipe={ recipesDetails } />
@@ -64,10 +62,6 @@ function DetailsOrProgress() {
         <Instructions recipe={ recipesDetails } />
         {validation && <VideoYouTube recipe={ recipesDetails } />}
         <Recommended recommended={ recommended } />
-        {/* {!isRecipeDone(id) && <Button
-          validationToIngredients={ !validationToIngredients }
-        />} */}
-
         {pathname.includes('in-progress')
           ? <ButtonFinishRecipe
               validationToIngredients={ !validationToIngredients }
