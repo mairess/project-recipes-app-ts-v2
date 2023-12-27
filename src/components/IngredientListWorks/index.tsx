@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import useCheckBoxChange from '../../hooks/useCheckBoxChange';
+import FoodContext from '../../context/FoodContext';
 import getIngredientsAndMeasures from '../../helpers/getIngredientsAndMeasures';
 import { DrinkType, MealType } from '../../types';
 import { Title, Wrapper } from './style';
@@ -16,7 +16,7 @@ function IngredientListWorks({ recipe }: IngredientListProps) {
     handleCheckboxChange,
     checkedIngredients,
     setCheckedIngredients,
-  } = useCheckBoxChange();
+  } = useContext(FoodContext);
   const { id = '' } = useParams();
   const { pathname } = useLocation();
   const validation = pathname.includes('/meals');

@@ -7,8 +7,6 @@ function useCopyToClipBoard() {
     const currentUrl = window.location.href;
     const trimmedUrl = currentUrl.slice(0, currentUrl.lastIndexOf('/'));
 
-    console.log(currentUrl);
-
     setIsLinkCopied(true);
     if (currentUrl.includes('in-progress')) {
       navigator.clipboard.writeText(trimmedUrl);

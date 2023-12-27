@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import IngredientList from '../IngredientList';
 import isRecipeDone from '../../helpers/isRecipeDone';
@@ -12,15 +12,20 @@ import Title from '../Title';
 import { MealType, DrinkType } from '../../types';
 import fetchDetails from '../../services/fetchDetails';
 import { Wrapper } from './style';
+import useIngredientsAndMeasures from '../../hooks/useIngredientsAndMeasures';
+import FoodContext from '../../context/FoodContext';
 
 function DetailsOrProgress() {
   const [recipesDetails, setRecipesDetails] = useState<
   MealType[] | DrinkType[]>([]);
+  const { ingredients } = useIngredientsAndMeasures(recipesDetails);
+  const { checkedIngredients } = useContext(FoodContext);
   const [recommended, setRecommended] = useState<MealType[] | DrinkType[]>([]);
   const { id = '' } = useParams();
   const { pathname } = useLocation();
   const validation = pathname.includes('/meals');
   const isPageInProgress = pathname.includes('/in-progress');
+  const validationToIngredients = ingredients.length === checkedIngredients.length;
 
   let fetchCategoryParam: string;
 
@@ -56,7 +61,9 @@ function DetailsOrProgress() {
         <Instructions recipe={ recipesDetails } />
         {validation && <VideoYouTube recipe={ recipesDetails } />}
         <Recommended recommended={ recommended } />
-        {!isRecipeDone(id) && <Button />}
+        {!isRecipeDone(id) && <Button
+          validationToIngredients={ !validationToIngredients }
+        />}
       </Wrapper>
     </>
   );

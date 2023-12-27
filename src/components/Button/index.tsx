@@ -7,6 +7,7 @@ import { StyledButton, Spinner, Container } from './style';
 type ButtonProps = {
   email?: string,
   validation?: boolean,
+  validationToIngredients?: boolean,
   width?: string,
   height?: string,
   margin?: string,
@@ -18,6 +19,7 @@ type ButtonProps = {
 function Button({
   email = '',
   validation = true,
+  validationToIngredients = true,
   width = '17.25rem',
   height = '2.5rem',
   margin = '0',
@@ -56,7 +58,9 @@ function Button({
     <Container>
       <StyledButton
         data-testid={ testId }
-        disabled={ !validation }
+        disabled={ pathname.includes('in-progress')
+          ? validationToIngredients
+          : !validation }
         onClick={ () => {
           handleSubmit({ email, validation, pathname, label, id });
           setAlertShown(false);

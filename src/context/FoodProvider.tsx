@@ -16,6 +16,7 @@ function FoodProvider({ children }: FilterProviderProps) {
   const [alertShown, setAlertShown] = useState(false);
   const [categoryResults, setCategoryResults] = useState<
   MealCategoryType[] | DrinkCategoryType[]>([]);
+  const [checkedIngredients, setCheckedIngredients] = useState<string[]>([]);
 
   const handleSubmit = ({
     email,
@@ -58,6 +59,15 @@ function FoodProvider({ children }: FilterProviderProps) {
     setFilter(newFilter);
   };
 
+  const handleCheckboxChange = (ingredient: string) => {
+    if (checkedIngredients.includes(ingredient)) {
+      setCheckedIngredients((prevChecked) => prevChecked
+        .filter((item) => item !== ingredient));
+    } else {
+      setCheckedIngredients((prevChecked) => [...prevChecked, ingredient]);
+    }
+  };
+
   return (
     <FoodContext.Provider
       value={ {
@@ -73,6 +83,9 @@ function FoodProvider({ children }: FilterProviderProps) {
         alertShown,
         categoryResults,
         setCategoryResults,
+        handleCheckboxChange,
+        checkedIngredients,
+        setCheckedIngredients,
       } }
     >
       {children}

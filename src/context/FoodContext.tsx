@@ -22,6 +22,9 @@ type ContextType = {
   alertShown: boolean;
   categoryResults: CategoryType[];
   setCategoryResults: (value: MealCategoryType[] | DrinkCategoryType[]) => void;
+  handleCheckboxChange:(value: string) => void;
+  checkedIngredients: string[];
+  setCheckedIngredients:(value: string[]) => void;
 };
 
 const FoodContext = createContext({} as ContextType);

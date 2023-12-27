@@ -15,12 +15,6 @@ function Header() {
   const { data } = usePageTitle(pathname);
   const { title, icon } = data;
 
-  // useEffect(() => {
-  //   if (!(pathname === '/meals' || pathname === '/drinks')) {
-  //     setShowSearchBar((prevState) => !prevState);
-  //   }
-  // }, [pathname]);
-
   return (
     <Container>
       <WrapperTop>
