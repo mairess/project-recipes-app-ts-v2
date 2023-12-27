@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import ButtonFinishRecipe from '../ButtonFinishRecipe';
 import IngredientList from '../IngredientList';
 import isRecipeDone from '../../helpers/isRecipeDone';
 import Button from '../Button';
@@ -51,6 +52,8 @@ function DetailsOrProgress() {
     fetchRecommended();
   }, [fetchCategoryParam]);
 
+  console.log(pathname.includes('in-progress'));
+
   return (
     <>
       <Title recipe={ recipesDetails } />
@@ -61,9 +64,18 @@ function DetailsOrProgress() {
         <Instructions recipe={ recipesDetails } />
         {validation && <VideoYouTube recipe={ recipesDetails } />}
         <Recommended recommended={ recommended } />
-        {!isRecipeDone(id) && <Button
+        {/* {!isRecipeDone(id) && <Button
           validationToIngredients={ !validationToIngredients }
-        />}
+        />} */}
+
+        {pathname.includes('in-progress')
+          ? <ButtonFinishRecipe
+              validationToIngredients={ !validationToIngredients }
+              recipe={ recipesDetails }
+          />
+          : !isRecipeDone(id) && <Button
+              validationToIngredients={ !validationToIngredients }
+          />}
       </Wrapper>
     </>
   );
