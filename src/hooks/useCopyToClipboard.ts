@@ -4,9 +4,17 @@ function useCopyToClipBoard() {
   const [isLinkCopied, setIsLinkCopied] = useState(false);
 
   const handCopyToleClipboard = () => {
-    setIsLinkCopied(true);
-    navigator.clipboard.writeText(window.location.href);
+    const currentUrl = window.location.href;
+    const trimmedUrl = currentUrl.slice(0, currentUrl.lastIndexOf('/'));
 
+    console.log(currentUrl);
+
+    setIsLinkCopied(true);
+    if (currentUrl.includes('in-progress')) {
+      navigator.clipboard.writeText(trimmedUrl);
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+    }
     setTimeout(() => {
       setIsLinkCopied(false);
     }, 2000);
