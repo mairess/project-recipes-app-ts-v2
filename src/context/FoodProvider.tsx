@@ -75,6 +75,7 @@ function FoodProvider({ children }: FilterProviderProps) {
         setMail,
         isFormValid,
         setIsFormValid,
+        setIsButtonClicked,
         isButtonClicked,
         handleSubmit,
         filter,

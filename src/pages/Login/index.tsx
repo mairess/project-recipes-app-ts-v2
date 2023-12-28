@@ -1,16 +1,12 @@
 import { useLocation } from 'react-router-dom';
+import Testing from '../../components/Testing';
 import usePageTitle from '../../hooks/usePageTitle';
 import useHandleChange from '../../hooks/useHandleChange';
 import logo from '../../images/logo-Recipes-App.svg';
 import { Container, LogoRecipes, Img, Inputs } from './style';
-import Button from '../../components/Button';
 
 function Login() {
-  const {
-    email,
-    isFormValid,
-    handleEmailChange,
-    handlePasswordChange,
+  const { email, isFormValid, handleEmailChange, handlePasswordChange,
   } = useHandleChange();
   const { pathname } = useLocation();
   const { data: { title } } = usePageTitle(pathname);
@@ -35,10 +31,11 @@ function Login() {
           data-testid="password-input"
           onChange={ handlePasswordChange }
         />
-
-        <Button
-          email={ email }
-          validation={ isFormValid }
+        <Testing
+          buttonConfig={ {
+            disabled: isFormValid,
+            email,
+          } }
         />
       </Inputs>
     </Container>

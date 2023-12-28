@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import ButtonFinishRecipe from '../ButtonFinishRecipe';
 import IngredientList from '../IngredientList';
 import isRecipeDone from '../../helpers/isRecipeDone';
-import Button from '../Button';
 import Recommended from '../Recommended';
 import fetchCategory from '../../services/fetchCategory';
 import VideoYouTube from '../VideoYouTube';
@@ -15,6 +13,7 @@ import fetchDetails from '../../services/fetchDetails';
 import { Wrapper } from './style';
 import useIngredientsAndMeasures from '../../hooks/useIngredientsAndMeasures';
 import FoodContext from '../../context/FoodContext';
+import Testing from '../Testing';
 
 function DetailsOrProgress() {
   const [recipesDetails, setRecipesDetails] = useState<
@@ -27,6 +26,14 @@ function DetailsOrProgress() {
   const validation = pathname.includes('/meals');
   const isPageInProgress = pathname.includes('/in-progress');
   const validationToIngredients = ingredients.length === checkedIngredients.length;
+  const isDone = isRecipeDone(id);
+  const inRoutInProgress = pathname.includes('in-progress');
+  console.log(pathname);
+
+  const style: React.CSSProperties = {
+    position: 'fixed',
+    bottom: '0',
+  };
 
   let fetchCategoryParam: string;
 
@@ -62,14 +69,15 @@ function DetailsOrProgress() {
         <Instructions recipe={ recipesDetails } />
         {validation && <VideoYouTube recipe={ recipesDetails } />}
         <Recommended recommended={ recommended } />
-        {pathname.includes('in-progress')
-          ? <ButtonFinishRecipe
-              validationToIngredients={ !validationToIngredients }
-              recipe={ recipesDetails }
-          />
-          : !isRecipeDone(id) && <Button
-              validationToIngredients={ !validationToIngredients }
-          />}
+        {!isDone && <Testing
+          buttonConfig={ {
+            pathname,
+            style,
+            theId: id,
+            disabled: inRoutInProgress ? validationToIngredients : true,
+            theRecipe: recipesDetails,
+          } }
+        />}
       </Wrapper>
     </>
   );

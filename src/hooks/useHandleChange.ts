@@ -1,22 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function useHandleChange() {
   const [form, setForm] = useState({ email: '', password: '' });
+  const [isFormValid, setIsFormValid] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const { email, password } = form;
 
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isPasswordValid = /^[^\s]{7,}$/.test(password);
-  const isFormValid = isEmailValid && isPasswordValid;
+  useEffect(() => {
+    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isPasswordValid = /^[^\s]{7,}$/.test(password);
+    setIsFormValid(isEmailValid && isPasswordValid);
+  }, [email, password]);
 
   const handleEmailChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const newMail = target.value;
-    setForm({ ...form, email: newMail });
+    setForm((prevForm) => ({ ...prevForm, email: newMail }));
   };
 
   const handlePasswordChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = target.value;
-    setForm({ ...form, password: newPassword });
+    setForm((prevForm) => ({ ...prevForm, password: newPassword }));
   };
 
   const handleSearchTerm = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +34,7 @@ function useHandleChange() {
     handlePasswordChange,
     handleSearchTerm,
     searchTerm,
+    form,
   };
 }
 

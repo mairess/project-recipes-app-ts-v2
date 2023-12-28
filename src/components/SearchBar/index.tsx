@@ -1,4 +1,6 @@
 import { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+import Testing from '../Testing';
 import { SearchTermContext } from '../../context/SearchTermContext';
 import FoodContext from '../../context/FoodContext';
 import {
@@ -11,6 +13,13 @@ import Button from '../Button';
 function SearchBar() {
   const { handleFilterChange } = useContext(FoodContext);
   const { handleSearchTerm } = useContext(SearchTermContext);
+  const { pathname } = useLocation();
+
+  const style = {
+    width: '13.00994rem',
+    height: '1.5625rem',
+    margin: '1rem',
+  };
 
   return (
     <Container>
@@ -56,11 +65,11 @@ function SearchBar() {
         </label>
       </WrapperRadios>
 
-      <Button
-        width="13.00994rem"
-        height="1.5625rem"
-        margin="1rem"
-        showSpinner={ false }
+      <Testing
+        buttonConfig={ {
+          pathname,
+          style,
+        } }
       />
     </Container>
   );

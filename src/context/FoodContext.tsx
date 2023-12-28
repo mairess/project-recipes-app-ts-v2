@@ -6,6 +6,7 @@ type ContextType = {
   setMail: (filter: string) => void;
   isFormValid: boolean;
   setIsFormValid: (value: boolean) => void;
+  setIsButtonClicked: (value: boolean) => void;
   isButtonClicked: boolean;
   handleSubmit: (
     data: {
