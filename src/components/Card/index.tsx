@@ -7,7 +7,7 @@ import FoodContext from '../../context/FoodContext';
 import { SearchTermContext } from '../../context/SearchTermContext';
 import { DrinkCategoryType, DrinkType, MealCategoryType, MealType } from '../../types';
 
-function Cards() {
+function Card() {
   const [recipe, setRecipe] = useState<MealType[] | DrinkType[]>([]);
   const { isButtonClicked, alertShown, setAlertShown, filter, categoryResults,
     setCategoryResults } = useContext(FoodContext);
@@ -98,4 +98,4 @@ function Cards() {
   );
 }
 
-export default Cards;
+export default Card;

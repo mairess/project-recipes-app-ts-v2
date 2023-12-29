@@ -1,8 +1,8 @@
-import Cards from '../Cards';
+import Card from '../Card';
 
 function Recipe() {
   return (
-    <Cards />
+    <Card />
   );
 }
 
