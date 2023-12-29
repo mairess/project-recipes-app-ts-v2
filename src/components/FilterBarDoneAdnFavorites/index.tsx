@@ -9,13 +9,14 @@ function FilterBarDoneAdnFavorites() {
         <Div key={ filter }>
           <WrapperButton>
             <Button
+              type="submit"
               data-testid={ filter === 'All'
                 ? `filter-by-${filter.toLocaleLowerCase()}-btn`
                 : `filter-by-${filter.toLocaleLowerCase().slice(0, -1)}-btn` }
             >
               <img
                 src={ getTheIcon.toFilterBarDoneAndFavRecipes(filter) }
-                alt=""
+                alt={ filter }
               />
             </Button>
           </WrapperButton>

@@ -67,7 +67,7 @@ function toFilterBarDoneAndFavRecipes(category:string) {
     case 'All':
       icon = burgerIcon;
       break;
-    case 'Food':
+    case 'Meals':
       icon = allMealsIcon;
       break;
     case 'Drinks':
