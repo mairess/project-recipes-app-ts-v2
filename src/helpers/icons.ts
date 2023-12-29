@@ -4,14 +4,15 @@ import goatIcon from '../images/goatIcon.svg';
 import chickenIcon from '../images/chickenIcon.svg';
 import breakfastIcon from '../images/breakfastIcon.svg';
 import dessertIcon from '../images/dessertIcon.svg';
-import allDrinks from '../images/allDrinksIcon.svg';
+import allDrinksIcon from '../images/allDrinksIcon.svg';
 import ordinaryDrink from '../images/ordinaryDrinkIcon.svg';
 import cocktailIcon from '../images/cocktailIcon.svg';
 import shakeIcon from '../images/shakeIcon.svg';
 import unknownIcon from '../images/otherUnknownIcon.svg';
 import cocoaIcon from '../images/cocoaIcon.svg';
+import burgerIcon from '../images/burgerIcon.svg';
 
-function getTheIcon(category:string) {
+function toFilterBar(category:string) {
   let icon;
 
   switch (category) {
@@ -49,7 +50,7 @@ function getTheIcon(category:string) {
       icon = allMealsIcon;
       break;
     case 'iconDrink':
-      icon = allDrinks;
+      icon = allDrinksIcon;
       break;
     default:
       icon = dessertIcon;
@@ -59,4 +60,28 @@ function getTheIcon(category:string) {
   return icon;
 }
 
-export default getTheIcon;
+function toFilterBarDoneAndFavRecipes(category:string) {
+  let icon;
+
+  switch (category) {
+    case 'All':
+      icon = burgerIcon;
+      break;
+    case 'Food':
+      icon = allMealsIcon;
+      break;
+    case 'Drinks':
+      icon = allDrinksIcon;
+      break;
+    default:
+      icon = burgerIcon;
+      break;
+  }
+
+  return icon;
+}
+
+export default {
+  toFilterBar,
+  toFilterBarDoneAndFavRecipes,
+};

@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import Testing from '../../components/Testing';
+import Testing from '../../components/Button';
 import usePageTitle from '../../hooks/usePageTitle';
 import useHandleChange from '../../hooks/useHandleChange';
 import logo from '../../images/logo-Recipes-App.svg';

@@ -59,7 +59,9 @@ function FilterBar() {
             data-testid="All-category-filter"
           >
             <img
-              src={ routeValidation ? getTheIcon('iconMeal') : getTheIcon('iconDrink') }
+              src={ routeValidation
+                ? getTheIcon.toFilterBar('iconMeal')
+                : getTheIcon.toFilterBar('iconDrink') }
               alt={ routeValidation ? 'All meals' : 'All drinks' }
             />
           </Button>
@@ -74,7 +76,7 @@ function FilterBar() {
               data-testid={ `${category.strCategory}-category-filter` }
             >
               <img
-                src={ getTheIcon(category.strCategory) }
+                src={ getTheIcon.toFilterBar(category.strCategory) }
                 alt={ category.strCategory }
               />
             </Button>

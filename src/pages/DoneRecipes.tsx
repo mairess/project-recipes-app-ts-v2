@@ -1,6 +1,8 @@
+import FilterBarDoneAdnFavorites from '../components/FilterBarDoneAdnFavorites';
+
 function DoneRecipes() {
   return (
-    <h1>DoneRecipes</h1>
+    <FilterBarDoneAdnFavorites />
   );
 }
 

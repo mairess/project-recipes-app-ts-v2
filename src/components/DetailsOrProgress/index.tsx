@@ -13,7 +13,7 @@ import fetchDetails from '../../services/fetchDetails';
 import { Wrapper } from './style';
 import useIngredientsAndMeasures from '../../hooks/useIngredientsAndMeasures';
 import FoodContext from '../../context/FoodContext';
-import Testing from '../Testing';
+import Button from '../Button';
 
 function DetailsOrProgress() {
   const [recipesDetails, setRecipesDetails] = useState<
@@ -69,7 +69,7 @@ function DetailsOrProgress() {
         <Instructions recipe={ recipesDetails } />
         {validation && <VideoYouTube recipe={ recipesDetails } />}
         <Recommended recommended={ recommended } />
-        {!isDone && <Testing
+        {!isDone && <Button
           buttonConfig={ {
             pathname,
             style,

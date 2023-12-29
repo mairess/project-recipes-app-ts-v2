@@ -1,13 +1,8 @@
 import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-import Testing from '../Testing';
 import { SearchTermContext } from '../../context/SearchTermContext';
 import FoodContext from '../../context/FoodContext';
-import {
-  Container,
-  SearchInput,
-  WrapperRadios,
-} from './style';
+import { Container, SearchInput, WrapperRadios } from './style';
 import Button from '../Button';
 
 function SearchBar() {
@@ -65,7 +60,7 @@ function SearchBar() {
         </label>
       </WrapperRadios>
 
-      <Testing
+      <Button
         buttonConfig={ {
           pathname,
           style,

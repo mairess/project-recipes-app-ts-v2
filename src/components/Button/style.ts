@@ -19,7 +19,7 @@ export const StyledButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0 ;
+    /* margin: 1rem 0 ; */
 
     border-radius: 0.3125rem;
     background: #FCC436;

@@ -1,78 +1,33 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useContext } from 'react';
-import isRecipeInProgress from '../../helpers/isRecipeInProgress';
-import FoodContext from '../../context/FoodContext';
+import { DrinkType, MealType } from '../../types';
+import useSubmit from '../../hooks/useSubmit';
+import getTheLabel from '../../helpers/getTheLabel';
 import { StyledButton, Spinner, Container } from './style';
+import getTestId from '../../helpers/getTestId';
 
 type ButtonProps = {
-  email?: string,
-  validation?: boolean,
-  validationToIngredients?: boolean,
-  width?: string,
-  height?: string,
-  margin?: string,
-  showSpinner?: boolean,
-  position?: 'fixed',
-  bottom?: string,
+  buttonConfig?: {
+    disabled?: boolean,
+    email?: string,
+    pathname?: string,
+    style?: React.CSSProperties,
+    theId?: string,
+    theRecipe?: MealType[] | DrinkType[],
+  }
 };
 
-function Button({
-  email = '',
-  validation = true,
-  validationToIngredients = true,
-  width = '17.25rem',
-  height = '2.5rem',
-  margin = '0',
-  showSpinner = true,
-  position = undefined,
-  bottom = '',
-}: ButtonProps) {
-  const { isButtonClicked, handleSubmit, setAlertShown } = useContext(FoodContext);
-  const { pathname } = useLocation();
-  const { id = '' } = useParams();
-  const navigate = useNavigate();
-  let label = 'Enter';
-  let testId = 'login-submit-btn';
-
-  const handleSaveMail = (thePath: string) => {
-    if (thePath === '/') {
-      navigate('/meals');
-      localStorage.setItem('user', JSON.stringify({ email }));
-    }
-  };
-
-  if (pathname.includes('meals') || pathname.includes('drinks')) {
-    label = 'Search';
-    testId = 'exec-search-btn';
-  }
-
-  if (pathname.includes('/meals/') || pathname.includes('/drinks/')) {
-    label = 'Start Recipe';
-    testId = 'start-recipe-btn';
-    position = 'fixed';
-    bottom = '0';
-  }
-
-  if (isRecipeInProgress(id, pathname)) {
-    label = 'Continue Recipe';
-  }
+function Button({ buttonConfig = {} }: ButtonProps) {
+  const { disabled = true, email = '', pathname = '/', theId, theRecipe } = buttonConfig;
+  const { showSpin, handleSubmit } = useSubmit(pathname, email);
 
   return (
     <Container>
       <StyledButton
-        data-testid={ testId }
-        disabled={ pathname.includes('in-progress')
-          ? validationToIngredients
-          : !validation }
-        onClick={ () => {
-          handleSaveMail(pathname);
-          handleSubmit({ email, validation, pathname, label, id });
-          setAlertShown(false);
-        } }
-        style={ { width, height, margin, position, bottom } }
+        data-testid={ getTestId(pathname) }
+        disabled={ !disabled }
+        style={ buttonConfig.style }
+        onClick={ () => handleSubmit(theRecipe) }
       >
-        {isButtonClicked && showSpinner
-          ? (<Spinner />) : (label)}
+        {showSpin ? <Spinner /> : getTheLabel(pathname, theId)}
       </StyledButton>
     </Container>
   );
