@@ -1,6 +1,8 @@
+import ButtonShare from '../ButtonShare';
 import convertedDate from '../../helpers/convertedDate';
 import { DoneRecipesType } from '../../types';
-import { Container, Card, Wrapper, WrapperTag } from './style';
+import { Container, Card, Wrapper, WrapperTag, WrapperButtonShare,
+  CardImage } from './style';
 import Tag from '../Tag';
 
 function CardDoneAndFavoriteRecipes() {
@@ -10,7 +12,7 @@ function CardDoneAndFavoriteRecipes() {
     <Container>
       {DoneRecipes.map((data: DoneRecipesType, index: number) => (
         <Card key={ data.id }>
-          <img
+          <CardImage
             data-testid={ `${index}-horizontal-image` }
             src={ data.image }
             alt=""
@@ -44,7 +46,9 @@ function CardDoneAndFavoriteRecipes() {
               </WrapperTag>
             )}
           </Wrapper>
-          Share button goes here
+          <WrapperButtonShare>
+            <ButtonShare />
+          </WrapperButtonShare>
         </Card>
       )) }
     </Container>

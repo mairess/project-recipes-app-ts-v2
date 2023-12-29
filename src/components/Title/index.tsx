@@ -1,12 +1,12 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import ButtonShare from '../ButtonShare';
 import useFavorite from '../../hooks/useFavorite';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import ordinaryDrinkIcon from '../../images/ordinaryDrinkIcon.svg';
 import dessertIcon from '../../images/dessertIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
-import shareIcon from '../../images/shareIcon.svg';
 import { DrinkType, FavoriteType, MealType } from '../../types';
 import { Container, RecipeTitle, TopHeader, BottomHeader,
   WrapperIcon, WrapperTag, FavAndShare, ImageBg, LinkCopied } from './style';
@@ -69,15 +69,7 @@ function Title({ recipe }: TitleProps) {
                 Link copied!
               </LinkCopied>
             )}
-            <button
-              onClick={ handCopyToleClipboard }
-            >
-              <img
-                data-testid="share-btn"
-                src={ shareIcon }
-                alt="Share icon"
-              />
-            </button>
+            <ButtonShare />
             <button
               onClick={ () => favoriteTheRecipe(
                 item,

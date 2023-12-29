@@ -9,13 +9,13 @@ export const TheTag = styled.div`
     background: #D9D9D9;
 
     max-width: 3.8rem;
-    max-height: 0.875rem;
+    max-height: 1rem;
 
     p {
         color: #797D86;
         font-size: 0.5625rem;
         font-style: normal;
-        font-weight: 500;
+        font-weight: 600;
         line-height: normal;
         margin: 0.875rem 0;
     }

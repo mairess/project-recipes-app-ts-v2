@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
@@ -15,17 +15,16 @@ export const Card = styled.div`
     height: 8.4375rem;
     flex-shrink: 0;
     
-
     border-radius: 0.3125rem;
     border: 0.518px solid #B1B1B1;
     background: #FFF;
+`;
 
-    img {
-        width: 10.20913rem;
-        height: 8.389rem;
-        flex-shrink: 0;
-        border-radius: 0.3125rem 0rem 0rem 0.3125rem;
-    }
+export const CardImage = styled.img`
+    width: 10.20913rem;
+    height: 8.38rem;
+    flex-shrink: 0;
+    border-radius: 0.3125rem 0rem 0rem 0.3125rem;
 `;
 
 export const Wrapper = styled.div`
@@ -81,4 +80,26 @@ export const WrapperTag = styled.div`
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+`;
+
+const SmartAnimate = keyframes`
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+`;
+
+export const WrapperButtonShare = styled.div`
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+    
+    button {
+        border: none;
+        background: none;
+
+        &:active {
+        animation: ${SmartAnimate} 300ms ease-out;
+    }
+    }
 `;
