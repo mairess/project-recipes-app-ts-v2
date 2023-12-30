@@ -7,9 +7,8 @@ export const TheTag = styled.div`
     flex-shrink: 0;
     border-radius: 0.625rem;
     background: #D9D9D9;
-
-    max-width: 3.8rem;
-    max-height: 1rem;
+    height: 1rem;
+    padding: 0.19rem;
 
     p {
         color: #797D86;

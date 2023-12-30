@@ -5,7 +5,6 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-
     margin-bottom: 4rem;
 `;
 
@@ -28,51 +27,44 @@ export const CardImage = styled.img`
 `;
 
 export const Wrapper = styled.div`
-    padding: 1rem 0 1rem 1rem;
+    min-width: 7rem;
+    margin-left: 0.5rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     justify-content: space-around;
     align-items: start;
+`;
 
-    div {
-        margin: 0;
-        padding: 0;
-    }
+export const Name = styled.h1`
+    margin: 0.5rem 0 0.25rem;
+    color: #1A1B1C;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+`;
 
-    h1 {
-        margin: 0;
-        width: 5.375rem;
-        color: #1A1B1C;
-        font-size: 0.75rem;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-    }
+const sharedStyle = styled.p`
+    display: flex;
+    color: #797D86;
+    text-align: center;
+    font-size: 0.5625rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+`;
 
-    p {
-        margin: 0;
-        width: 6.375rem;
-        color: #797D86;
-        text-align: center;
-        font-size: 0.5625rem;
-        font-style: normal;
-        font-weight: 300;
-        line-height: normal;
+export const CategoryNationality = styled(sharedStyle)``;
 
-        &:first-child {
-            color: #797D86;
-        }
+export const AlcoholicOrNot = styled(sharedStyle)``;
 
-        &:nth-child(2),
-        &:nth-child(3) {
-            display: flex;
-        }
-
-        &:nth-child(3) {
-            color: #1A1B1C;
-            font-weight: 400;
-        }
-    }
+export const DoneDate = styled.p`
+    color: #1A1B1C;
+    text-align: center;
+    font-size: 0.5625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 `;
 
 export const WrapperTag = styled.div`

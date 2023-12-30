@@ -3,8 +3,8 @@ import FoodContext from '../../context/FoodContext';
 import ButtonShare from '../ButtonShare';
 import convertedDate from '../../helpers/convertedDate';
 import { DoneRecipesType } from '../../types';
-import { Container, Card, Wrapper, WrapperTag, WrapperButtonShare,
-  CardImage, LinkCopied } from './style';
+import { Container, Card, Wrapper, Name, CategoryNationality, AlcoholicOrNot,
+  DoneDate, WrapperTag, WrapperButtonShare, CardImage, LinkCopied } from './style';
 import Tag from '../Tag';
 
 function CardDoneAndFavoriteRecipes() {
@@ -21,28 +21,30 @@ function CardDoneAndFavoriteRecipes() {
             alt=""
           />
           <Wrapper>
-            <h1
-              data-testid={ `${index}-horizontal-name` }
-            >
-              {data.name}
-            </h1>
-            {data.type === 'meal' && (
-              <p
-                data-testid={ `${index}-horizontal-text` }
+            <div>
+              <Name
+                data-testid={ `${index}-horizontal-name` }
               >
-                {`${data.nationality} - ${data.category}`}
-              </p>
-            )}
+                {data.name}
+              </Name>
+              {data.type === 'meal' && (
+                <CategoryNationality
+                  data-testid={ `${index}-horizontal-text` }
+                >
+                  {`${data.nationality} - ${data.category}`}
+                </CategoryNationality>
+              )}
+            </div>
             {data.type === 'drink' && (
-              <p>
+              <AlcoholicOrNot>
                 {data.alcoholicOrNot}
-              </p>
+              </AlcoholicOrNot>
             )}
-            <p
+            <DoneDate
               data-testid={ `${index}-horizontal-top-text` }
             >
               {`Done in: ${data.doneDate}`}
-            </p>
+            </DoneDate>
             {data.type === 'meal' && (
               <WrapperTag>
                 <Tag theTags={ data.tags } />
@@ -54,12 +56,12 @@ function CardDoneAndFavoriteRecipes() {
               </LinkCopied>
             )}
           </Wrapper>
-          {/* <WrapperButtonShare> */}
-          <ButtonShare
-            recipeId={ data.id }
-            type={ data.type }
-          />
-          {/* </WrapperButtonShare> */}
+          <WrapperButtonShare>
+            <ButtonShare
+              recipeId={ data.id }
+              type={ data.type }
+            />
+          </WrapperButtonShare>
         </Card>
       )) }
     </Container>

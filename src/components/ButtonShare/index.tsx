@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import FoodContext from '../../context/FoodContext';
 import shareIcon from '../../images/shareIcon.svg';
+import { Button } from './style';
 
 type ButtonShareProps = {
   recipeId?: string,
@@ -17,7 +18,7 @@ function ButtonShare({ recipeId = '', type = '' }: ButtonShareProps) {
   };
   return (
     <div>
-      <button
+      <Button
         onClick={ handleShareClick }
       >
         <img
@@ -25,7 +26,7 @@ function ButtonShare({ recipeId = '', type = '' }: ButtonShareProps) {
           src={ shareIcon }
           alt="Share icon"
         />
-      </button>
+      </Button>
     </div>
   );
 }
