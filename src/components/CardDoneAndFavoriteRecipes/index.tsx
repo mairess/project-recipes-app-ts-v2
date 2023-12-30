@@ -35,14 +35,13 @@ function CardDoneAndFavoriteRecipes() {
               >
                 { data.type === 'meal'
                   ? `${data.nationality} - ${data.category}`
-                  : `${data.category}`}
+                  : (
+                    <AlcoholicOrNot>
+                      {data.alcoholicOrNot}
+                    </AlcoholicOrNot>
+                  )}
               </CategoryNationality>
             </div>
-            {data.type === 'drink' && (
-              <AlcoholicOrNot>
-                {data.alcoholicOrNot}
-              </AlcoholicOrNot>
-            )}
             <DoneDate
               data-testid={ `${index}-horizontal-done-date` }
             >
