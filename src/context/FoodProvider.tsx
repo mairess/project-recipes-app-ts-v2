@@ -17,6 +17,7 @@ function FoodProvider({ children }: FilterProviderProps) {
   const [categoryResults, setCategoryResults] = useState<
   MealCategoryType[] | DrinkCategoryType[]>([]);
   const [checkedIngredients, setCheckedIngredients] = useState<string[]>([]);
+  const [isLinkCopied, setIsLinkCopied] = useState(false);
 
   const handleNavigation = (path: string) => {
     setIsButtonClicked(false);
@@ -68,6 +69,23 @@ function FoodProvider({ children }: FilterProviderProps) {
     }
   };
 
+  const copyToClipboard = (shareLink: string) => {
+    const currentUrl = window.location.href;
+    const trimmedUrl = currentUrl.slice(0, currentUrl.lastIndexOf('/'));
+
+    setIsLinkCopied(true);
+    if (currentUrl.includes('in-progress')) {
+      navigator.clipboard.writeText(trimmedUrl);
+    } else if (currentUrl.includes('done-recipes')) {
+      navigator.clipboard.writeText(shareLink);
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+    }
+    setTimeout(() => {
+      setIsLinkCopied(false);
+    }, 2000);
+  };
+
   return (
     <FoodContext.Provider
       value={ {
@@ -87,6 +105,8 @@ function FoodProvider({ children }: FilterProviderProps) {
         handleCheckboxChange,
         checkedIngredients,
         setCheckedIngredients,
+        copyToClipboard,
+        isLinkCopied,
       } }
     >
       {children}

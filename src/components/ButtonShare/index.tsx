@@ -1,12 +1,24 @@
-import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
+import { useContext } from 'react';
+import FoodContext from '../../context/FoodContext';
 import shareIcon from '../../images/shareIcon.svg';
 
-function ButtonShare() {
-  const { handCopyToleClipboard } = useCopyToClipBoard();
+type ButtonShareProps = {
+  recipeId?: string,
+  type?: string
+};
+
+function ButtonShare({ recipeId = '', type = '' }: ButtonShareProps) {
+  const { copyToClipboard } = useContext(FoodContext);
+  const currentUrl = window.location.origin;
+
+  const handleShareClick = () => {
+    const shareLink = `${currentUrl}/${type}s/${recipeId}`;
+    copyToClipboard(shareLink);
+  };
   return (
     <div>
       <button
-        onClick={ handCopyToleClipboard }
+        onClick={ handleShareClick }
       >
         <img
           data-testid="share-btn"

@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
@@ -82,24 +82,19 @@ export const WrapperTag = styled.div`
     gap: 0.5rem;
 `;
 
-const SmartAnimate = keyframes`
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-`;
-
 export const WrapperButtonShare = styled.div`
     width: 100vw;
     display: flex;
     justify-content: center;
     margin-top: 0.5rem;
-    
-    button {
-        border: none;
-        background: none;
+    position: relative;
+`;
 
-        &:active {
-        animation: ${SmartAnimate} 300ms ease-out;
-    }
-    }
+export const LinkCopied = styled.div`
+    display: flex;
+    margin-top: 0.5rem;
+    align-items: center;
+    justify-self: center;
+    position: absolute;
+    filter: drop-shadow(0px 0px 2.915px rgba(0, 0, 0, 1));
 `;

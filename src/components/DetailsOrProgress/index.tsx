@@ -28,7 +28,6 @@ function DetailsOrProgress() {
   const validationToIngredients = ingredients.length === checkedIngredients.length;
   const isDone = isRecipeDone(id);
   const inRoutInProgress = pathname.includes('in-progress');
-  console.log(pathname);
 
   const style: React.CSSProperties = {
     position: 'fixed',

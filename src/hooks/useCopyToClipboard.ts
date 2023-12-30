@@ -3,7 +3,7 @@ import { useState } from 'react';
 function useCopyToClipBoard() {
   const [isLinkCopied, setIsLinkCopied] = useState(false);
 
-  const handCopyToleClipboard = () => {
+  const copyToClipboard = () => {
     const currentUrl = window.location.href;
     const trimmedUrl = currentUrl.slice(0, currentUrl.lastIndexOf('/'));
 
@@ -18,7 +18,7 @@ function useCopyToClipBoard() {
     }, 2000);
   };
 
-  return { isLinkCopied, handCopyToleClipboard };
+  return { isLinkCopied, copyToClipboard };
 }
 
 export default useCopyToClipBoard;

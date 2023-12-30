@@ -5,8 +5,6 @@ type TagProps = {
 };
 
 function Tag({ theTags }: TagProps) {
-  console.log(theTags);
-
   if (theTags.length === 0) {
     return (
       <TheTag>

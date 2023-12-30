@@ -1,12 +1,15 @@
+import { useContext } from 'react';
+import FoodContext from '../../context/FoodContext';
 import ButtonShare from '../ButtonShare';
 import convertedDate from '../../helpers/convertedDate';
 import { DoneRecipesType } from '../../types';
 import { Container, Card, Wrapper, WrapperTag, WrapperButtonShare,
-  CardImage } from './style';
+  CardImage, LinkCopied } from './style';
 import Tag from '../Tag';
 
 function CardDoneAndFavoriteRecipes() {
   const DoneRecipes = convertedDate();
+  const { isLinkCopied } = useContext(FoodContext);
 
   return (
     <Container>
@@ -45,10 +48,18 @@ function CardDoneAndFavoriteRecipes() {
                 <Tag theTags={ data.tags } />
               </WrapperTag>
             )}
+            {isLinkCopied && (
+              <LinkCopied>
+                Link copied!
+              </LinkCopied>
+            )}
           </Wrapper>
-          <WrapperButtonShare>
-            <ButtonShare />
-          </WrapperButtonShare>
+          {/* <WrapperButtonShare> */}
+          <ButtonShare
+            recipeId={ data.id }
+            type={ data.type }
+          />
+          {/* </WrapperButtonShare> */}
         </Card>
       )) }
     </Container>

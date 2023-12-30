@@ -26,6 +26,8 @@ type ContextType = {
   handleCheckboxChange:(value: string) => void;
   checkedIngredients: string[];
   setCheckedIngredients:(value: string[]) => void;
+  copyToClipboard: (value: string) => void;
+  isLinkCopied: boolean;
 };
 
 const FoodContext = createContext({} as ContextType);

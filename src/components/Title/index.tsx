@@ -1,8 +1,8 @@
 import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import FoodContext from '../../context/FoodContext';
 import ButtonShare from '../ButtonShare';
 import useFavorite from '../../hooks/useFavorite';
-import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import ordinaryDrinkIcon from '../../images/ordinaryDrinkIcon.svg';
 import dessertIcon from '../../images/dessertIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
@@ -23,7 +23,7 @@ function Title({ recipe }: TitleProps) {
     setFavoriteList(theFavorites);
   }, [setFavoriteList]);
 
-  const { isLinkCopied, handCopyToleClipboard } = useCopyToClipBoard();
+  const { isLinkCopied } = useContext(FoodContext);
   const { pathname } = useLocation();
   const validation = pathname.includes('/meals');
 
