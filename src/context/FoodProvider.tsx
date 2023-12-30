@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FoodContext from './FoodContext';
-import { DrinkCategoryType, MealCategoryType } from '../types';
+import { DoneRecipesType, DrinkCategoryType, MealCategoryType } from '../types';
 
 type FilterProviderProps = {
   children: React.ReactNode,
@@ -13,12 +13,14 @@ function FoodProvider({ children }: FilterProviderProps) {
   const [isFormValid, setIsFormValid] = useState(false);
   const navigate = useNavigate();
   const [filter, setFilter] = useState('');
+  const [filterDone, setFilterDone] = useState('All');
   const [alertShown, setAlertShown] = useState(false);
   const [categoryResults, setCategoryResults] = useState<
   MealCategoryType[] | DrinkCategoryType[]>([]);
   const [checkedIngredients, setCheckedIngredients] = useState<string[]>([]);
   const [isLinkCopied, setIsLinkCopied] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState<number | null | undefined>(null);
+  const [doneRecipes, setDoneRecipes] = useState<DoneRecipesType[]>([]);
 
   const handleNavigation = (path: string) => {
     setIsButtonClicked(false);
@@ -112,6 +114,10 @@ function FoodProvider({ children }: FilterProviderProps) {
         isLinkCopied,
         setCopiedIndex,
         copiedIndex,
+        doneRecipes,
+        setDoneRecipes,
+        filterDone,
+        setFilterDone,
       } }
     >
       {children}

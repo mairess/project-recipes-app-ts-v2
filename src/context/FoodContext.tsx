@@ -1,5 +1,6 @@
 import { createContext } from 'react';
-import { CategoryType, DrinkCategoryType, MealCategoryType } from '../types';
+import { CategoryType, DoneRecipesType, DrinkCategoryType,
+  MealCategoryType } from '../types';
 
 type ContextType = {
   mail: string;
@@ -30,6 +31,10 @@ type ContextType = {
   isLinkCopied: boolean;
   setCopiedIndex: (value: number) => void;
   copiedIndex: number | null | undefined;
+  doneRecipes: DoneRecipesType[];
+  setDoneRecipes: (value: DoneRecipesType[]) => void;
+  filterDone: string;
+  setFilterDone: (value: string) => void;
 };
 
 const FoodContext = createContext({} as ContextType);

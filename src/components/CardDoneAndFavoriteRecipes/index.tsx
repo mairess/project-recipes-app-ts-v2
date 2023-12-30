@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import useDoneAndFavRecipes from '../../hooks/useDoneAndFavRecipes';
 import FoodContext from '../../context/FoodContext';
 import ButtonShare from '../ButtonShare';
 import { DoneRecipesType } from '../../types';
@@ -9,13 +10,11 @@ import Tag from '../Tag';
 
 function CardDoneAndFavoriteRecipes() {
   const { isLinkCopied, copiedIndex } = useContext(FoodContext);
-
-  const stored = localStorage.getItem('doneRecipes');
-  const parsed = stored ? JSON.parse(stored) : [];
+  const { recipes } = useDoneAndFavRecipes();
 
   return (
     <Container>
-      {parsed.map((data: DoneRecipesType, index: number) => (
+      {recipes.map((data: DoneRecipesType, index: number) => (
         <Card key={ data.id }>
           <CardImage
             data-testid={ `${index}-horizontal-image` }
