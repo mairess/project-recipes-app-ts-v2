@@ -40,18 +40,31 @@ function Card() {
       }
     };
     getTheRecipes();
-  }, [isButtonClicked, pathname]);
+  }, [
+    isButtonClicked,
+    pathname,
+    filter,
+    navigate,
+    routeValidation,
+    setAlertShown,
+  ]);
 
   useEffect(() => {
     if (filter === 'First Letter' && searchTerm.length > 1 && !alertShown) {
       setAlertShown(true);
       alert('Your search must have only 1 (one) character');
     }
-  }, [isButtonClicked]);
+  }, [
+    isButtonClicked,
+    alertShown,
+    filter,
+    setAlertShown,
+    searchTerm.length,
+  ]);
 
   useEffect(() => {
     setCategoryResults([]);
-  }, [pathname]);
+  }, [pathname, setCategoryResults]);
 
   const content = categoryResults && categoryResults.length ? categoryResults : recipe;
 

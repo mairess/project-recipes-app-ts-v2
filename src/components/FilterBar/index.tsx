@@ -48,7 +48,7 @@ function FilterBar() {
       }
     };
     getTheCategory();
-  }, [pathname, selectedCategory]);
+  }, [pathname, selectedCategory, setCategoryResults]);
 
   return (
     <Container>

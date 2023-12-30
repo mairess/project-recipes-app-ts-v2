@@ -35,6 +35,12 @@ export const Wrapper = styled.div`
     align-items: start;
 `;
 
+export const WrapperNameAndCategory = styled.div`
+    a {
+        text-decoration:  none;
+    }
+`;
+
 export const Name = styled.h1`
     color: #1A1B1C;
     font-size: 0.75rem;
