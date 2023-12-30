@@ -98,10 +98,3 @@ export const FavAndShare = styled.div`
     }
     }
 `;
-
-export const LinkCopied = styled.div`
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    filter: drop-shadow(0px 0px 2.915px rgba(0, 0, 0, 1));
-`;

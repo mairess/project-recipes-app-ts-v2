@@ -36,7 +36,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Name = styled.h1`
-    margin: 0.5rem 0 0.25rem;
     color: #1A1B1C;
     font-size: 0.75rem;
     font-style: normal;

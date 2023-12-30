@@ -11,18 +11,19 @@ type ButtonShareProps = {
 };
 
 function ButtonShare({ recipeId = '', type = '', index = 0 }: ButtonShareProps) {
-  const { copyToClipboard } = useContext(FoodContext);
+  const { copyToClipboard, setCopiedIndex } = useContext(FoodContext);
   const currentUrl = window.location.origin;
   const { pathname } = useLocation();
 
-  const handleShareClick = () => {
+  const handleShareClick = (theIndex: number) => {
     const shareLink = `${currentUrl}/${type}s/${recipeId}`;
     copyToClipboard(shareLink);
+    setCopiedIndex(theIndex);
   };
   return (
     <div>
       <Button
-        onClick={ handleShareClick }
+        onClick={ () => handleShareClick(index) }
       >
         <img
           data-testid={ pathname === '/done-recipes'

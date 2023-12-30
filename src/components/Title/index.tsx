@@ -9,7 +9,8 @@ import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import { DrinkType, FavoriteType, MealType } from '../../types';
 import { Container, RecipeTitle, TopHeader, BottomHeader,
-  WrapperIcon, WrapperTag, FavAndShare, ImageBg, LinkCopied } from './style';
+  WrapperIcon, WrapperTag, FavAndShare, ImageBg } from './style';
+import LinkCopied from '../LinkCopied';
 
 type TitleProps = {
   recipe: MealType[] | DrinkType[];
@@ -65,9 +66,7 @@ function Title({ recipe }: TitleProps) {
           </WrapperTag>
           <FavAndShare>
             {isLinkCopied && (
-              <LinkCopied>
-                Link copied!
-              </LinkCopied>
+              <LinkCopied />
             )}
             <ButtonShare />
             <button

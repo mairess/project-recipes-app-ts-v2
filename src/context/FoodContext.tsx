@@ -28,6 +28,8 @@ type ContextType = {
   setCheckedIngredients:(value: string[]) => void;
   copyToClipboard: (value: string) => void;
   isLinkCopied: boolean;
+  setCopiedIndex: (value: number) => void;
+  copiedIndex: number | null | undefined;
 };
 
 const FoodContext = createContext({} as ContextType);
