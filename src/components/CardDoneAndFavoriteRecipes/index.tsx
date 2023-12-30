@@ -1,24 +1,27 @@
 import { useContext } from 'react';
 import FoodContext from '../../context/FoodContext';
 import ButtonShare from '../ButtonShare';
-import convertedDate from '../../helpers/convertedDate';
+// import convertedDate from '../../helpers/convertedDate';
 import { DoneRecipesType } from '../../types';
 import { Container, Card, Wrapper, Name, CategoryNationality, AlcoholicOrNot,
   DoneDate, WrapperTag, WrapperButtonShare, CardImage, LinkCopied } from './style';
 import Tag from '../Tag';
 
 function CardDoneAndFavoriteRecipes() {
-  const DoneRecipes = convertedDate();
+  // const DoneRecipes = convertedDate();
   const { isLinkCopied } = useContext(FoodContext);
+
+  const stored = localStorage.getItem('doneRecipes');
+  const parsed = stored ? JSON.parse(stored) : [];
 
   return (
     <Container>
-      {DoneRecipes.map((data: DoneRecipesType, index: number) => (
+      {parsed.map((data: DoneRecipesType, index: number) => (
         <Card key={ data.id }>
           <CardImage
             data-testid={ `${index}-horizontal-image` }
             src={ data.image }
-            alt=""
+            alt={ data.name }
           />
           <Wrapper>
             <div>
@@ -27,13 +30,13 @@ function CardDoneAndFavoriteRecipes() {
               >
                 {data.name}
               </Name>
-              {data.type === 'meal' && (
-                <CategoryNationality
-                  data-testid={ `${index}-horizontal-text` }
-                >
-                  {`${data.nationality} - ${data.category}`}
-                </CategoryNationality>
-              )}
+              <CategoryNationality
+                data-testid={ `${index}-horizontal-top-text` }
+              >
+                { data.type === 'meal'
+                  ? `${data.nationality} - ${data.category}`
+                  : `${data.category}`}
+              </CategoryNationality>
             </div>
             {data.type === 'drink' && (
               <AlcoholicOrNot>
@@ -41,13 +44,16 @@ function CardDoneAndFavoriteRecipes() {
               </AlcoholicOrNot>
             )}
             <DoneDate
-              data-testid={ `${index}-horizontal-top-text` }
+              data-testid={ `${index}-horizontal-done-date` }
             >
               {`Done in: ${data.doneDate}`}
             </DoneDate>
             {data.type === 'meal' && (
               <WrapperTag>
-                <Tag theTags={ data.tags } />
+                <Tag
+                  index={ index }
+                  theTags={ data.tags }
+                />
               </WrapperTag>
             )}
             {isLinkCopied && (
@@ -58,6 +64,7 @@ function CardDoneAndFavoriteRecipes() {
           </Wrapper>
           <WrapperButtonShare>
             <ButtonShare
+              index={ index }
               recipeId={ data.id }
               type={ data.type }
             />

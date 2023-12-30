@@ -27,7 +27,7 @@ export const CardImage = styled.img`
 `;
 
 export const Wrapper = styled.div`
-    min-width: 7rem;
+    min-width: 6rem;
     margin-left: 0.5rem;
     display: flex;
     flex-direction: column; 

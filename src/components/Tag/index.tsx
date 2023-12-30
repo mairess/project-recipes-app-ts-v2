@@ -1,10 +1,11 @@
 import { TheTag } from './style';
 
 type TagProps = {
-  theTags: string[]
+  theTags: string[],
+  index: number,
 };
 
-function Tag({ theTags }: TagProps) {
+function Tag({ theTags, index }: TagProps) {
   if (theTags.length === 0) {
     return (
       <TheTag>
@@ -15,8 +16,14 @@ function Tag({ theTags }: TagProps) {
 
   return (
     theTags.slice(0, 2).map((tag) => (
-      <TheTag key={ tag }>
-        <p>{tag}</p>
+      <TheTag
+        key={ tag }
+      >
+        <p
+          data-testid={ `${index}-${tag}-horizontal-tag` }
+        >
+          {tag}
+        </p>
       </TheTag>
     ))
   );

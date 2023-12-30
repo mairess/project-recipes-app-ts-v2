@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 function useHandleChange() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [isFormValid, setIsFormValid] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
   const { email, password } = form;
 
   useEffect(() => {
@@ -22,18 +21,11 @@ function useHandleChange() {
     setForm((prevForm) => ({ ...prevForm, password: newPassword }));
   };
 
-  const handleSearchTerm = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    const newTerm = target.value;
-    setSearchTerm(newTerm);
-  };
-
   return {
     email,
     isFormValid,
     handleEmailChange,
     handlePasswordChange,
-    handleSearchTerm,
-    searchTerm,
     form,
   };
 }
