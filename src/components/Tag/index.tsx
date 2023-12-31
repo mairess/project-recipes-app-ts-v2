@@ -6,7 +6,7 @@ type TagProps = {
 };
 
 function Tag({ theTags, index }: TagProps) {
-  if (theTags.length === 0) {
+  if (theTags?.length === 0) {
     return (
       <TheTag>
         <p>No tags</p>
@@ -15,7 +15,7 @@ function Tag({ theTags, index }: TagProps) {
   }
 
   return (
-    theTags.slice(0, 2).map((tag) => (
+    theTags?.slice(0, 2).map((tag) => (
       <TheTag
         key={ tag }
       >
