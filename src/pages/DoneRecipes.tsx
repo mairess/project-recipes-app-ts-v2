@@ -1,5 +1,5 @@
 import CardDoneAndFavoriteRecipes from '../components/CardDoneAndFavoriteRecipes';
-import FilterBarDoneAdnFavorites from '../components/FilterBarDoneAdnFavorites';
+import FilterBarDoneAdnFavorites from '../components/FilterBarDoneAndFavorites';
 
 function DoneRecipes() {
   return (
