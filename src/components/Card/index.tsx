@@ -11,10 +11,14 @@ function Card() {
   const [recipe, setRecipe] = useState<MealType[] | DrinkType[]>([]);
   const { isButtonClicked, alertShown, setAlertShown, filter, categoryResults,
     setCategoryResults } = useContext(FoodContext);
-  const { searchTerm } = useContext(SearchTermContext);
+  const { searchTerm, setSearchTerm } = useContext(SearchTermContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const routeValidation = (pathname === '/meals');
+
+  useEffect(() => {
+    setSearchTerm('');
+  }, [isButtonClicked]);
 
   useEffect(() => {
     const getTheRecipes = async () => {
@@ -40,31 +44,18 @@ function Card() {
       }
     };
     getTheRecipes();
-  }, [
-    isButtonClicked,
-    pathname,
-    filter,
-    navigate,
-    routeValidation,
-    setAlertShown,
-  ]);
+  }, [isButtonClicked, pathname]);
 
   useEffect(() => {
     if (filter === 'First Letter' && searchTerm.length > 1 && !alertShown) {
       setAlertShown(true);
       alert('Your search must have only 1 (one) character');
     }
-  }, [
-    isButtonClicked,
-    alertShown,
-    filter,
-    setAlertShown,
-    searchTerm.length,
-  ]);
+  }, [isButtonClicked]);
 
   useEffect(() => {
     setCategoryResults([]);
-  }, [pathname, setCategoryResults]);
+  }, [pathname]);
 
   const content = categoryResults && categoryResults.length ? categoryResults : recipe;
 
