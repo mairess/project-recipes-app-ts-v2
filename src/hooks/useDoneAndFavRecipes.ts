@@ -1,23 +1,23 @@
 import { useContext, useEffect, useState } from 'react';
 import FoodContext from '../context/FoodContext';
-import { DoneRecipesType } from '../types';
+import { DoneRecipesType, FavoriteType } from '../types';
 
-function useDoneAndFavRecipes() {
+function useDoneAndFavRecipes(theRoute: string) {
   const { filterDone } = useContext(FoodContext);
-  const [recipes, setRecipes] = useState<DoneRecipesType[]>([]);
+  const [recipes, setRecipes] = useState<DoneRecipesType[] | FavoriteType[]>([]);
 
   useEffect(() => {
-    const stored = localStorage.getItem('doneRecipes');
+    let recover = 'doneRecipes';
+
+    if (theRoute === '/favorite-recipes') {
+      recover = 'favoriteRecipes';
+    }
+
+    const stored = localStorage.getItem(recover);
     const parsed = stored ? JSON.parse(stored) : [];
 
-    const getRecipes = () => {
-      const filteredRecipes: DoneRecipesType[] = filterDone === 'All' ? parsed : parsed
-        .filter((data: DoneRecipesType) => data.type
-          .toLowerCase() === filterDone.toLowerCase().slice(0, -1));
-      setRecipes(filteredRecipes);
-    };
-    getRecipes();
-  }, [filterDone]);
+    setRecipes(parsed);
+  }, [filterDone, theRoute]);
 
   return { recipes };
 }

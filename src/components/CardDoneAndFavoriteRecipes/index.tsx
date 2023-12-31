@@ -1,9 +1,9 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import useDoneAndFavRecipes from '../../hooks/useDoneAndFavRecipes';
 import FoodContext from '../../context/FoodContext';
 import ButtonShare from '../ButtonShare';
-import { DoneRecipesType } from '../../types';
+import { DoneRecipesType, FavoriteType } from '../../types';
 import LinkCopied from '../LinkCopied';
 import { Container, Card, Wrapper, Name, CategoryNationality, AlcoholicOrNot,
   DoneDate, WrapperTag, WrapperButtonShare, CardImage,
@@ -11,12 +11,42 @@ import { Container, Card, Wrapper, Name, CategoryNationality, AlcoholicOrNot,
 import Tag from '../Tag';
 
 function CardDoneAndFavoriteRecipes() {
-  const { isLinkCopied, copiedIndex } = useContext(FoodContext);
-  const { recipes } = useDoneAndFavRecipes();
+  const [
+    contentToRender,
+    setContentToRender,
+  ] = useState<FavoriteType[] | DoneRecipesType[]>([]);
+  const { isLinkCopied, copiedIndex, filterDone } = useContext(FoodContext);
+  const { pathname } = useLocation();
+  const { recipes } = useDoneAndFavRecipes(pathname);
+
+  console.log(recipes);
+
+  useEffect(() => {
+    let recoverFromStorage = 'doneRecipes';
+
+    if (pathname === '/favorite-recipes') {
+      recoverFromStorage = 'favoriteRecipes';
+    }
+
+    const stored = localStorage.getItem(recoverFromStorage);
+    const parsed = stored ? JSON.parse(stored) : [];
+
+    setContentToRender(parsed);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (filterDone === 'All') {
+      setContentToRender(recipes);
+    } else {
+      const filtered = recipes
+        .filter((item) => item.type === filterDone.toLocaleLowerCase().slice(0, -1));
+      setContentToRender(filtered);
+    }
+  }, [filterDone, recipes]);
 
   return (
     <Container>
-      {recipes.map((data: DoneRecipesType, index: number) => (
+      {contentToRender.map((data: DoneRecipesType | FavoriteType, index: number) => (
         <Card key={ data.id }>
           <Link to={ `/${data.type}s/${data.id}` }>
             <CardImage
@@ -55,14 +85,14 @@ function CardDoneAndFavoriteRecipes() {
               <DoneDate
                 data-testid={ `${index}-horizontal-done-date` }
               >
-                {`Done in: ${data.doneDate}`}
+                {`Done in: ${(data as DoneRecipesType).doneDate}`}
               </DoneDate>
             )}
             {data.type === 'meal' && (
               <WrapperTag>
                 <Tag
                   index={ index }
-                  theTags={ data.tags }
+                  theTags={ (data as DoneRecipesType).tags }
                 />
               </WrapperTag>
             )}
