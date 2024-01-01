@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import circleIcon from '../../images/circle.svg';
 
 export const Container = styled.div`
@@ -42,10 +42,20 @@ export const WrapperButton = styled.div`
     height: 4.17rem;
 `;
 
+const SmartAnimate = keyframes`
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+`;
+
 export const Button = styled.button`
     background: none;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &:active {
+        animation: ${SmartAnimate} 300ms ease-out;
+    }
 `;
