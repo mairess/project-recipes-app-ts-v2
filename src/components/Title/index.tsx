@@ -5,19 +5,18 @@ import ButtonShare from '../ButtonShare';
 import useFavorite from '../../hooks/useFavorite';
 import ordinaryDrinkIcon from '../../images/ordinaryDrinkIcon.svg';
 import dessertIcon from '../../images/dessertIcon.svg';
-import blackHeartIcon from '../../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
-import { DrinkType, FavoriteType, MealType } from '../../types';
+import { DrinkType, MealType } from '../../types';
 import { Container, RecipeTitle, TopHeader, BottomHeader,
   WrapperIcon, WrapperTag, FavAndShare, ImageBg } from './style';
 import LinkCopied from '../LinkCopied';
+import ButtonFavorite from '../ButtonFavorite';
 
 type TitleProps = {
   recipe: MealType[] | DrinkType[];
 };
 
 function Title({ recipe }: TitleProps) {
-  const { favoriteTheRecipe, setFavoriteList, favoriteList } = useFavorite();
+  const { setFavoriteList } = useFavorite();
   useEffect(() => {
     const storedFavorites = localStorage.getItem('favoriteRecipes');
     const theFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
@@ -69,23 +68,7 @@ function Title({ recipe }: TitleProps) {
               <LinkCopied />
             )}
             <ButtonShare />
-            <button
-              onClick={ () => favoriteTheRecipe(
-                item,
-                validation ? (item as MealType).idMeal : (item as DrinkType).idDrink,
-                pathname,
-              ) }
-            >
-              <img
-                data-testid="favorite-btn"
-                src={ favoriteList.some((fav: FavoriteType) => (
-                  fav.id === (validation
-                    ? (item as MealType).idMeal
-                    : (item as DrinkType).idDrink)
-                )) ? blackHeartIcon : whiteHeartIcon }
-                alt="Favorite icon"
-              />
-            </button>
+            <ButtonFavorite recipe={ item } />
           </FavAndShare>
         </TopHeader>
         <BottomHeader>

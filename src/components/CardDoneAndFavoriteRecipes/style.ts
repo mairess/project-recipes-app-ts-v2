@@ -95,3 +95,10 @@ export const LinkCopied = styled.div`
     position: absolute;
     filter: drop-shadow(0px 0px 2.915px rgba(0, 0, 0, 1));
 `;
+
+export const WrapperButtonFAvAndShare = styled.div`
+    display: flex;
+    min-width: 5rem;
+    justify-content: space-around;
+    align-items: center;
+`;

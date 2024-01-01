@@ -26,7 +26,7 @@ function ButtonShare({ recipeId = '', type = '', index = 0 }: ButtonShareProps) 
         onClick={ () => handleShareClick(index) }
       >
         <img
-          data-testid={ pathname === '/done-recipes'
+          data-testid={ pathname === '/done-recipes' || pathname === '/favorite-recipes'
             ? `${index}-horizontal-share-btn`
             : 'share-btn' }
           src={ shareIcon }

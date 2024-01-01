@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import { CategoryType, DoneRecipesType, DrinkCategoryType,
-  MealCategoryType } from '../types';
+  MealCategoryType, FavoriteType } from '../types';
 
 type ContextType = {
   mail: string;
@@ -35,6 +35,8 @@ type ContextType = {
   setDoneRecipes: (value: DoneRecipesType[]) => void;
   filterDone: string;
   setFilterDone: (value: string) => void;
+  contentToRender: DoneRecipesType[] | FavoriteType[];
+  setContentToRender: (value: DoneRecipesType[] | FavoriteType[]) => void;
 };
 
 const FoodContext = createContext({} as ContextType);

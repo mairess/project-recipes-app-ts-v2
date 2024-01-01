@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import FoodContext from '../context/FoodContext';
 import isFavorite from '../helpers/isFavorite';
 import removeFavorite from '../helpers/removeFavorite';
 import addFavorite from '../helpers/addFavorite';
@@ -8,6 +9,7 @@ function useFavorite() {
   const storedFavorites = localStorage.getItem('favoriteRecipes');
   const theFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
   const [favoriteList, setFavoriteList] = useState<FavoriteType[]>([]);
+  const { setContentToRender } = useContext(FoodContext);
 
   const favoriteTheRecipe = (
     recipe: MealType | DrinkType,
@@ -19,12 +21,14 @@ function useFavorite() {
     if (isFavorite(theFavorites, theId)) {
       const updatedFavorites = removeFavorite(theFavorites, theId);
       setFavoriteList(updatedFavorites);
+      setContentToRender(updatedFavorites);
       localStorage.setItem('favoriteRecipes', JSON.stringify(updatedFavorites));
     } else {
       addFavorite(validation, recipe, theFavorites);
       const storedFavs = localStorage.getItem('favoriteRecipes');
       const theFavs = storedFavs ? JSON.parse(storedFavs) : [];
       setFavoriteList(theFavs);
+      setContentToRender(theFavs);
     }
   };
 

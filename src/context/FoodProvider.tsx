@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FoodContext from './FoodContext';
-import { DoneRecipesType, DrinkCategoryType, MealCategoryType } from '../types';
+import { DoneRecipesType, DrinkCategoryType, MealCategoryType,
+  FavoriteType } from '../types';
 
 type FilterProviderProps = {
   children: React.ReactNode,
@@ -21,6 +22,10 @@ function FoodProvider({ children }: FilterProviderProps) {
   const [isLinkCopied, setIsLinkCopied] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState<number | null | undefined>(null);
   const [doneRecipes, setDoneRecipes] = useState<DoneRecipesType[]>([]);
+  const [
+    contentToRender,
+    setContentToRender,
+  ] = useState<FavoriteType[] | DoneRecipesType[]>([]);
 
   const handleNavigation = (path: string) => {
     setIsButtonClicked(false);
@@ -118,6 +123,8 @@ function FoodProvider({ children }: FilterProviderProps) {
         setDoneRecipes,
         filterDone,
         setFilterDone,
+        contentToRender,
+        setContentToRender,
       } }
     >
       {children}

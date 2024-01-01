@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import ButtonFavorite from '../ButtonFavorite';
 import useDoneAndFavRecipes from '../../hooks/useDoneAndFavRecipes';
 import FoodContext from '../../context/FoodContext';
 import ButtonShare from '../ButtonShare';
@@ -7,17 +8,15 @@ import { DoneRecipesType, FavoriteType } from '../../types';
 import LinkCopied from '../LinkCopied';
 import { Container, Card, Wrapper, Name, CategoryNationality, AlcoholicOrNot,
   DoneDate, WrapperTag, WrapperButtonShare, CardImage,
-  WrapperNameAndCategory } from './style';
+  WrapperNameAndCategory, WrapperButtonFAvAndShare } from './style';
 import Tag from '../Tag';
 
 function CardDoneAndFavoriteRecipes() {
-  const [
-    contentToRender,
-    setContentToRender,
-  ] = useState<FavoriteType[] | DoneRecipesType[]>([]);
-  const { isLinkCopied, copiedIndex, filterDone } = useContext(FoodContext);
+  const { isLinkCopied, copiedIndex, filterDone,
+    contentToRender, setContentToRender } = useContext(FoodContext);
   const { pathname } = useLocation();
   const { recipes } = useDoneAndFavRecipes(pathname);
+  const isRouteFavorite = pathname === '/favorite-recipes';
 
   console.log(recipes);
 
@@ -79,14 +78,26 @@ function CardDoneAndFavoriteRecipes() {
                 )}
               </div>
             </WrapperNameAndCategory>
+            <WrapperButtonFAvAndShare>
+              {isRouteFavorite && (
+                <ButtonShare
+                  index={ index }
+                  recipeId={ data.id }
+                  type={ data.type }
+                />
+              )}
+              {isRouteFavorite && (<ButtonFavorite index={ index } favRecipe={ data } />)}
+            </WrapperButtonFAvAndShare>
             {copiedIndex === index && isLinkCopied ? (
               <LinkCopied />
-            ) : (
-              <DoneDate
-                data-testid={ `${index}-horizontal-done-date` }
-              >
-                {`Done in: ${(data as DoneRecipesType).doneDate}`}
-              </DoneDate>
+            ) : (!isRouteFavorite
+              && (
+                <DoneDate
+                  data-testid={ `${index}-horizontal-done-date` }
+                >
+                  {`Done in: ${(data as DoneRecipesType).doneDate}`}
+                </DoneDate>
+              )
             )}
             {data.type === 'meal' && (
               <WrapperTag>
@@ -98,11 +109,12 @@ function CardDoneAndFavoriteRecipes() {
             )}
           </Wrapper>
           <WrapperButtonShare>
-            <ButtonShare
+            { !isRouteFavorite
+            && (<ButtonShare
               index={ index }
               recipeId={ data.id }
               type={ data.type }
-            />
+            />)}
           </WrapperButtonShare>
         </Card>
       )) }
