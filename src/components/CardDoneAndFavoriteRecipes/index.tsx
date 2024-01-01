@@ -18,8 +18,6 @@ function CardDoneAndFavoriteRecipes() {
   const { recipes } = useDoneAndFavRecipes(pathname);
   const isRouteFavorite = pathname === '/favorite-recipes';
 
-  console.log(recipes);
-
   useEffect(() => {
     let recoverFromStorage = 'doneRecipes';
 
@@ -79,16 +77,20 @@ function CardDoneAndFavoriteRecipes() {
               </div>
             </WrapperNameAndCategory>
             <WrapperButtonFAvAndShare>
-              {isRouteFavorite && (
-                <ButtonShare
-                  index={ index }
-                  recipeId={ data.id }
-                  type={ data.type }
-                />
+              {copiedIndex === index && isLinkCopied && isRouteFavorite ? (
+                <LinkCopied />
+              ) : (
+                isRouteFavorite && (
+                  <ButtonShare
+                    index={ index }
+                    recipeId={ data.id }
+                    type={ data.type }
+                  />
+                )
               )}
               {isRouteFavorite && (<ButtonFavorite index={ index } favRecipe={ data } />)}
             </WrapperButtonFAvAndShare>
-            {copiedIndex === index && isLinkCopied ? (
+            {copiedIndex === index && isLinkCopied && !isRouteFavorite ? (
               <LinkCopied />
             ) : (!isRouteFavorite
               && (

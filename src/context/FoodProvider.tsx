@@ -85,7 +85,8 @@ function FoodProvider({ children }: FilterProviderProps) {
     setCopiedIndex(index);
     if (currentUrl.includes('in-progress')) {
       navigator.clipboard.writeText(inProgressUrl);
-    } else if (currentUrl.includes('done-recipes')) {
+    } else if (currentUrl.includes('done-recipes')
+    || currentUrl.includes('favorite-recipes')) {
       navigator.clipboard.writeText(shareLink);
     } else {
       navigator.clipboard.writeText(currentUrl);

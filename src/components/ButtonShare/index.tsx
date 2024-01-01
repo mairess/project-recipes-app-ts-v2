@@ -20,6 +20,7 @@ function ButtonShare({ recipeId = '', type = '', index = 0 }: ButtonShareProps) 
     copyToClipboard(shareLink);
     setCopiedIndex(theIndex);
   };
+
   return (
     <div>
       <Button
