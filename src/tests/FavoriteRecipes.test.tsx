@@ -3,14 +3,13 @@ import { vi } from 'vitest';
 import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
 import FoodProvider from '../context/FoodProvider';
-import doneRecipesLocalStorageMock from './mocks/doneRecipesLocalStorageMock';
+import favoriteRecipeLocalStorageMock from './mocks/favoriteRecipeLocalStorageMock';
 
-const theRoute = '/done-recipes';
+const theRoute = '/favorite-recipes';
 
-describe('Testing DoneRecipes page.', () => {
+describe('Testing FavoriteRecipes page.', () => {
   test('Should filter meals and drinks.', async () => {
-    localStorage.setItem('doneRecipes', JSON.stringify(doneRecipesLocalStorageMock));
-
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipeLocalStorageMock));
     const { user } = renderWithRouter(
       <FoodProvider>
         <App />
@@ -34,8 +33,8 @@ describe('Testing DoneRecipes page.', () => {
 
     await user.click(filterDrinksBtn);
     const aquamarineSecondTime = screen.getByAltText(/Aquamarine/i);
-    expect(aquamarineSecondTime).toBeVisible();
     expect(arrabiata).not.toBeVisible();
+    expect(aquamarineSecondTime).toBeVisible();
 
     await user.click(filterAllBtn);
     const arrabiataSecondTime = screen.getByAltText(/Spicy Arrabiata Penne/i);
