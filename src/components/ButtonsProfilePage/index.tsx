@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Wrapper, Button, Line } from './style';
+import { Wrapper, Button, Line, Image } from './style';
 
 type ButtonsProfilePageProps = {
   icon: string,
@@ -29,14 +29,14 @@ function ButtonsProfilePage({ icon, label, index, testId }: ButtonsProfilePagePr
   return (
     <>
       <Wrapper>
-        <img
-          src={ icon }
-          alt={ label }
-        />
         <Button
           onClick={ handleNavigate }
           data-testid={ testId }
         >
+          <Image
+            src={ icon }
+            alt={ label }
+          />
           { label }
         </Button>
       </Wrapper>

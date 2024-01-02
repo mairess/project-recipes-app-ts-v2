@@ -29,3 +29,7 @@ export const Button = styled.button`
     letter-spacing: 0.03rem;
     text-transform: capitalize;
 `;
+
+export const Image = styled.img`
+    margin-right: 2rem;
+`;

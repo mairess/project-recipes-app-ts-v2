@@ -3,13 +3,13 @@ import { vi } from 'vitest';
 import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
 import FoodProvider from '../context/FoodProvider';
-import doneRecipesLocalStorageMock from './mocks/doneRecipesLocalStorageMock';
+import doneRecipesLocalStorage from './mocks/doneRecipesLocalStorage';
 
 const theRoute = '/done-recipes';
 
 describe('Testing DoneRecipes page.', () => {
   test('Should filter meals and drinks.', async () => {
-    localStorage.setItem('doneRecipes', JSON.stringify(doneRecipesLocalStorageMock));
+    localStorage.setItem('doneRecipes', JSON.stringify(doneRecipesLocalStorage));
 
     const { user } = renderWithRouter(
       <FoodProvider>

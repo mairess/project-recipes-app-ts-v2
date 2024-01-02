@@ -3,13 +3,13 @@ import { vi } from 'vitest';
 import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
 import FoodProvider from '../context/FoodProvider';
-import favoriteRecipeLocalStorageMock from './mocks/favoriteRecipeLocalStorageMock';
+import favoriteRecipeLocalStorage from './mocks/favoriteRecipeLocalStorage';
 
 const theRoute = '/favorite-recipes';
 
 describe('Testing FavoriteRecipes page.', () => {
   test('Should filter meals and drinks.', async () => {
-    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipeLocalStorageMock));
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipeLocalStorage));
     const { user } = renderWithRouter(
       <FoodProvider>
         <App />
