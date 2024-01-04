@@ -26,6 +26,7 @@ function FoodProvider({ children }: FilterProviderProps) {
     contentToRender,
     setContentToRender,
   ] = useState<FavoriteType[] | DoneRecipesType[]>([]);
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
   const handleNavigation = (path: string) => {
     setIsButtonClicked(false);
@@ -108,6 +109,7 @@ function FoodProvider({ children }: FilterProviderProps) {
         isButtonClicked,
         handleSubmit,
         filter,
+        setFilter,
         handleFilterChange,
         setAlertShown,
         alertShown,
@@ -126,6 +128,8 @@ function FoodProvider({ children }: FilterProviderProps) {
         setFilterDone,
         contentToRender,
         setContentToRender,
+        showSearchBar,
+        setShowSearchBar,
       } }
     >
       {children}

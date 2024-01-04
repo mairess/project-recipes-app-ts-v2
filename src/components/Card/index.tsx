@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
+import fetchDefault from '../../services/fetchDefault';
 import { Container, Image, RecipeName, Wrapper } from './style';
 import fetchMeals from '../../services/fetchMeals';
 import fetchDrinks from '../../services/fetchDrinks';
@@ -11,14 +12,22 @@ function Card() {
   const [recipe, setRecipe] = useState<MealType[] | DrinkType[]>([]);
   const { isButtonClicked, alertShown, setAlertShown, filter, categoryResults,
     setCategoryResults } = useContext(FoodContext);
-  const { searchTerm, setSearchTerm } = useContext(SearchTermContext);
+  const { searchTerm } = useContext(SearchTermContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const routeValidation = (pathname === '/meals');
 
   useEffect(() => {
-    setSearchTerm('');
-  }, [isButtonClicked]);
+    const defaultRecipes = async () => {
+      try {
+        const getDefaultContent = await fetchDefault(pathname);
+        setRecipe(getDefaultContent);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    defaultRecipes();
+  }, [pathname]);
 
   useEffect(() => {
     const getTheRecipes = async () => {
@@ -44,7 +53,7 @@ function Card() {
       }
     };
     getTheRecipes();
-  }, [isButtonClicked, pathname]);
+  }, [isButtonClicked]);
 
   useEffect(() => {
     if (filter === 'First Letter' && searchTerm.length > 1 && !alertShown) {
@@ -58,6 +67,7 @@ function Card() {
   }, [pathname]);
 
   const content = categoryResults && categoryResults.length ? categoryResults : recipe;
+  console.log(filter);
 
   return (
     <Container>

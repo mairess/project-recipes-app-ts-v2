@@ -1,12 +1,14 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SearchTermContext } from '../context/SearchTermContext';
 import { MealType, DrinkType } from '../types';
 import formDoneRecipe from '../helpers/formDoneRecipe';
 import FoodContext from '../context/FoodContext';
 
 function useSubmit(path: string, email?: string) {
   const [showSpin, setShowSpin] = useState(false);
-  const { setIsButtonClicked } = useContext(FoodContext);
+  const { setIsButtonClicked, isButtonClicked } = useContext(FoodContext);
+  const { setSearchTerm } = useContext(SearchTermContext);
   const navigate = useNavigate();
 
   const inProgressRoute = path.split('/')[3];
@@ -22,7 +24,11 @@ function useSubmit(path: string, email?: string) {
     }
 
     if (path === '/meals' || path === '/drinks') {
-      setIsButtonClicked(true);
+      setIsButtonClicked(!isButtonClicked);
+
+      setTimeout(() => {
+        setSearchTerm('');
+      }, 1000);
     }
 
     if ((path.includes('/meals/')

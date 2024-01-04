@@ -19,6 +19,7 @@ type ContextType = {
     }
   ) => void;
   filter: string;
+  setFilter: (value: string) => void;
   handleFilterChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   setAlertShown: (value: boolean) => void;
   alertShown: boolean;
@@ -37,6 +38,8 @@ type ContextType = {
   setFilterDone: (value: string) => void;
   contentToRender: DoneRecipesType[] | FavoriteType[];
   setContentToRender: (value: DoneRecipesType[] | FavoriteType[]) => void;
+  showSearchBar: boolean,
+  setShowSearchBar: (value: boolean) => void,
 };
 
 const FoodContext = createContext({} as ContextType);

@@ -7,7 +7,7 @@ import Button from '../Button';
 
 function SearchBar() {
   const { handleFilterChange } = useContext(FoodContext);
-  const { handleSearchTerm } = useContext(SearchTermContext);
+  const { handleSearchTerm, searchTerm } = useContext(SearchTermContext);
   const { pathname } = useLocation();
 
   const style = {
@@ -19,6 +19,7 @@ function SearchBar() {
   return (
     <Container>
       <SearchInput
+        value={ searchTerm }
         type="text"
         data-testid="search-input"
         placeholder="Search"
