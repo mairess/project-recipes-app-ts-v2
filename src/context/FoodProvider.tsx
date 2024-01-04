@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import FoodContext from './FoodContext';
 import { DoneRecipesType, DrinkCategoryType, MealCategoryType,
   FavoriteType } from '../types';
@@ -12,7 +11,6 @@ function FoodProvider({ children }: FilterProviderProps) {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [mail, setMail] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
-  const navigate = useNavigate();
   const [filter, setFilter] = useState('');
   const [filterDone, setFilterDone] = useState('All');
   const [alertShown, setAlertShown] = useState(false);
@@ -27,42 +25,6 @@ function FoodProvider({ children }: FilterProviderProps) {
     setContentToRender,
   ] = useState<FavoriteType[] | DoneRecipesType[]>([]);
   const [showSearchBar, setShowSearchBar] = useState(false);
-
-  const handleNavigation = (path: string) => {
-    setIsButtonClicked(false);
-    navigate(path);
-  };
-
-  const handleSubmit = ({
-    email,
-    validation,
-    pathname,
-    label,
-    id,
-  }: {
-    email: string;
-    validation: boolean;
-    pathname: string;
-    label: string;
-    id: string;
-  }) => {
-    if (pathname === '/') {
-      localStorage.setItem('user', JSON.stringify({ email }));
-    }
-    if (validation) {
-      setIsButtonClicked(validation);
-
-      setTimeout(() => {
-        if (pathname.includes('in-progress')) {
-          handleNavigation('/done-recipes');
-        } else if (label === 'Start Recipe') {
-          const recipePath = pathname.includes('/meals') ? '/meals' : '/drinks';
-          handleNavigation(`${recipePath}/${id}/in-progress`);
-        }
-        setIsButtonClicked(false);
-      }, 1000);
-    }
-  };
 
   const handleFilterChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const newFilter = target.value;
@@ -107,7 +69,6 @@ function FoodProvider({ children }: FilterProviderProps) {
         setIsFormValid,
         setIsButtonClicked,
         isButtonClicked,
-        handleSubmit,
         filter,
         setFilter,
         handleFilterChange,

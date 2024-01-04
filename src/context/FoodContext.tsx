@@ -9,15 +9,6 @@ type ContextType = {
   setIsFormValid: (value: boolean) => void;
   setIsButtonClicked: (value: boolean) => void;
   isButtonClicked: boolean;
-  handleSubmit: (
-    data: {
-      email: string;
-      validation: boolean;
-      pathname: string;
-      label: string;
-      id: string;
-    }
-  ) => void;
   filter: string;
   setFilter: (value: string) => void;
   handleFilterChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
