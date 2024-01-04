@@ -3,8 +3,6 @@ import { CategoryType, DoneRecipesType, DrinkCategoryType,
   MealCategoryType, FavoriteType } from '../types';
 
 type ContextType = {
-  mail: string;
-  setMail: (filter: string) => void;
   isFormValid: boolean;
   setIsFormValid: (value: boolean) => void;
   setIsButtonClicked: (value: boolean) => void;
@@ -23,8 +21,6 @@ type ContextType = {
   isLinkCopied: boolean;
   setCopiedIndex: (value: number) => void;
   copiedIndex: number | null | undefined;
-  doneRecipes: DoneRecipesType[];
-  setDoneRecipes: (value: DoneRecipesType[]) => void;
   filterDone: string;
   setFilterDone: (value: string) => void;
   contentToRender: DoneRecipesType[] | FavoriteType[];

@@ -63,8 +63,6 @@ function FoodProvider({ children }: FilterProviderProps) {
   return (
     <FoodContext.Provider
       value={ {
-        mail,
-        setMail,
         isFormValid,
         setIsFormValid,
         setIsButtonClicked,
@@ -83,8 +81,6 @@ function FoodProvider({ children }: FilterProviderProps) {
         isLinkCopied,
         setCopiedIndex,
         copiedIndex,
-        doneRecipes,
-        setDoneRecipes,
         filterDone,
         setFilterDone,
         contentToRender,

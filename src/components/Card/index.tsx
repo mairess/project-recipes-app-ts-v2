@@ -67,7 +67,6 @@ function Card() {
   }, [pathname]);
 
   const content = categoryResults && categoryResults.length ? categoryResults : recipe;
-  console.log(filter);
 
   return (
     <Container>
