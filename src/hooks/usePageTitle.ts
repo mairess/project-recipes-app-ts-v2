@@ -1,4 +1,9 @@
 import { useEffect, useState } from 'react';
+import iconPlate from '../images/icon-plate.svg';
+import iconGlass from '../images/icon-glass.svg';
+import iconProfile from '../images/icon-profile.svg';
+import iconDoneRecipes from '../images/icon-done-recipes.svg';
+import iconFavoriteRecipes from '../images/icon-favorite-recipes.svg';
 
 function usePageTitle(pagePath: string) {
   const [data, setData] = useState({
@@ -18,35 +23,35 @@ function usePageTitle(pagePath: string) {
         setData({
           ...data,
           title: 'Meals',
-          icon: '/src/images/icon-plate.svg',
+          icon: iconPlate,
         });
         break;
       case '/drinks':
         setData({
           ...data,
           title: 'Drinks',
-          icon: '/src/images/icon-glass.svg',
+          icon: iconGlass,
         });
         break;
       case '/profile':
         setData({
           ...data,
           title: 'Profile',
-          icon: '/src/images/icon-profile.svg',
+          icon: iconProfile,
         });
         break;
       case '/done-recipes':
         setData({
           ...data,
           title: 'Done Recipes',
-          icon: '/src/images/icon-done-recipes.svg',
+          icon: iconDoneRecipes,
         });
         break;
       case '/favorite-recipes':
         setData({
           ...data,
           title: 'Favorite Recipes',
-          icon: '/src/images/icon-favorite-recipes.svg',
+          icon: iconFavoriteRecipes,
         });
         break;
       default:
