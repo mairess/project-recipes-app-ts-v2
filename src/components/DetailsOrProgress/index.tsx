@@ -10,7 +10,7 @@ import IngredientListWorks from '../IngredientListWorks';
 import Title from '../Title';
 import { MealType, DrinkType } from '../../types';
 import fetchDetails from '../../services/fetchDetails';
-import { Wrapper } from './style';
+import { Container, Wrapper } from './style';
 import useIngredientsAndMeasures from '../../hooks/useIngredientsAndMeasures';
 import FoodContext from '../../context/FoodContext';
 import Button from '../Button';
@@ -61,23 +61,25 @@ function DetailsOrProgress() {
   return (
     <>
       <Title recipe={ recipesDetails } />
-      <Wrapper>
-        {isPageInProgress
-          ? <IngredientListWorks recipe={ recipesDetails } />
-          : <IngredientList recipe={ recipesDetails } />}
-        <Instructions recipe={ recipesDetails } />
-        {validation && <VideoYouTube recipe={ recipesDetails } />}
-        <Recommended recommended={ recommended } />
-        {!isDone && <Button
-          buttonConfig={ {
-            pathname,
-            style,
-            theId: id,
-            disabled: inRoutInProgress ? validationToIngredients : true,
-            theRecipe: recipesDetails,
-          } }
-        />}
-      </Wrapper>
+      <Container>
+        <Wrapper>
+          {isPageInProgress
+            ? <IngredientListWorks recipe={ recipesDetails } />
+            : <IngredientList recipe={ recipesDetails } />}
+          <Instructions recipe={ recipesDetails } />
+          {validation && <VideoYouTube recipe={ recipesDetails } />}
+          <Recommended recommended={ recommended } />
+          {!isDone && <Button
+            buttonConfig={ {
+              pathname,
+              style,
+              theId: id,
+              disabled: inRoutInProgress ? validationToIngredients : true,
+              theRecipe: recipesDetails,
+            } }
+          />}
+        </Wrapper>
+      </Container>
     </>
   );
 }
