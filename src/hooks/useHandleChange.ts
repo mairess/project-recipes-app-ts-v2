@@ -1,3 +1,8 @@
+/**
+ * This hook is based on AmsBarros's code Login.tsx
+ * at https://github.com/mairess/project-recipes-app-ts/commit/b7ee299c7496513e58b5eadc68c914b4f4f36bfb#diff-3061e501089702d5d89d85aa8ded9ce463fda33697bbf4183d1479b132fc04d0
+*/
+
 import { useEffect, useState } from 'react';
 
 function useHandleChange() {
