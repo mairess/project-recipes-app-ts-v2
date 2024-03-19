@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.footer`
-    width: 22.5rem;
+    width: 100vw;
     height: 3.25rem;
     flex-shrink: 0;
     background: #41197F;
