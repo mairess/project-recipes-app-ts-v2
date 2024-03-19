@@ -17,7 +17,7 @@ export const WrapperTop = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 22.5rem;
+    width: 100vw;
     height: 3.25rem;
     flex-shrink: 0;
     background: #FCDC36;
