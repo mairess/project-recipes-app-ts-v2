@@ -1,16 +1,24 @@
 # <p align="center">Projeto App de Receitas</p>
 
+<div align="center">
+  
+| Statements                  | Branches                | Functions                 | Lines                |
+| --------------------------- | ----------------------- | ------------------------- | -------------------- |
+| ![Statements](https://img.shields.io/badge/Coverage-95.15%25-brightgreen.svg) | ![Branches](https://img.shields.io/badge/Coverage-84.69%25-yellow.svg) | ![Functions](https://img.shields.io/badge/Coverage-91.66%25-brightgreen.svg) | ![Lines](https://img.shields.io/badge/Coverage-95.15%25-brightgreen.svg)    |
+
+</div>
+
 ## Contexto
 
 Esse é projeto foi originalmente realizado em [grupo](https://github.com/mairess/project-recipes-app-ts), mas eu gostei tanto dele que fiz uma versão solo. Essa é uma aplicação versátil, que permite aos usuários explorar, buscar, filtrar, favoritar, compartilhar e acompanhar o processo de preparação de receitas e drinks. Utilizei duas APIs distintas, uma para comidas e outra para bebidas, garantindo uma ampla variedade de opções para os usuários. Usei `context api` para compartilhamento do estado da aplicação, `custom hooks`, `react router` e para testes usei `react testing library`, `vitest`, a estilização foi realizada com `styled-components` por meio de protótipo disponibilizado pela [Trybe](https://betrybe.com).
 
-```JSON
+```
 O layout foi projetado com foco em dispositivos móveis apenas (360px de largura por 640px de altura).
 ```
 
 <details>
 
-<summary>O app</summary><br>
+<summary><strong>O app</strong></summary><br>
 
 ![App meals page](app-meals-page.png)
 
@@ -24,53 +32,21 @@ O layout foi projetado com foco em dispositivos móveis apenas (360px de largura
 
 Primeiro, clone o repositório:
 
-```JSON
-git clone git@github.com:mairess/project-recipes-app-ts.git
+```SEHLL
+git clone git@github.com:mairess/project-recipes-app-ts-v2.git
 ```
 
 Instale as dependências:
 
-```JSON
+```SEHLL
 npm install
 ```
 
 Inicie o vite server:
 
-```JSON
+```SEHLL
 npm run dev
 ```
-
-### Os testes
-
-Rode os testes com:
-
-```JSON
-npm test
-```
-
-Rode um teste específico:
-
-```JSON
-npm test RecipeDetails
-```
-
-Rode a cobertura dos testes:
-
-```JSON
-npm run coverage
-```
-
-<details>
-
-<summary>Cobertura de testes</summary><br>
-
-![coverage-1](coverage-1.png)
-
-![coverage-2](coverage-2.png)
-
-![coverage-3](coverage-3.png)
-
-</details>
 
 </details>
 
@@ -82,30 +58,47 @@ npm run coverage
 
 Primeiro, clone o repositório:
 
-```JSON
-git clone git@github.com:mairess/project-recipes-app-ts.git
+```SEHLL
+git clone git@github.com:mairess/project-recipes-app-ts-v2.git
 ```
 
 Suba o container:
 
-```JSON
+```SEHLL
 docker compose up -d
 ```
 
 O vite server estará disponível na porta `3000`:
 
-```HTML
+```SEHLL
 http://localhost:3000
 ```
 
 </details>
 
-## Competências desenvolvidas
+<details>
 
-- Capacidade de utilizar `Context API` do React para gerenciar estado.
-- Capacidade de utilizar `Hooks customizados`.
-- Capacidade de utilizar `Hook useContext`.
-- Capacidade de utilizar `Hook useEffect`.
-- Capacidade de escrever `testes`.
-- Capacidade de garantir uma boa `cobertura de testes`.
-- Capacidade de `gestão do tempo`.
+<summary><strong>Rode os testes</strong></summary><br>
+
+Rode os testes com:
+
+```SHELL
+npm test
+```
+
+Rode a cobertura:
+
+```SHELL
+npm run coverage
+```
+
+</details>
+
+## Tecnologias utilizadas
+
+- React
+- Typescript
+- React testing library
+- Vitest
+- Styled components
+- Docker
