@@ -16,13 +16,12 @@ Esse é projeto foi originalmente realizado em [grupo](https://github.com/maires
 O layout foi projetado com foco em dispositivos móveis apenas (360px de largura por 640px de altura).
 ```
 
-<details>
-
 <summary><strong>O app</strong></summary><br>
 
-![App meals page](app-meals-page.png)
-
-</details>
+![App login page](app-login-page.jpeg)
+![App meal page](app-meal-page.png)
+![App drink page](app-drink-page.png)
+![App search page](app-search-page.png)
 
 <details>
 
